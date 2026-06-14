@@ -1,0 +1,82 @@
+{
+  "title": "Hex.pm API Vocabulary",
+  "description": "Domain terms and concepts used throughout the Hex.pm API.",
+  "url": "https://hex.pm/docs",
+  "terms": [
+    {
+      "term": "Package",
+      "definition": "A reusable library or application published to the Hex.pm registry. A package can have multiple releases.",
+      "related_endpoints": ["/packages", "/packages/{name}"]
+    },
+    {
+      "term": "Release",
+      "definition": "A specific versioned artifact of a package. Each release contains a tarball, metadata, and dependency requirements.",
+      "related_endpoints": ["/packages/{name}/releases/{version}", "/publish"]
+    },
+    {
+      "term": "Repository",
+      "definition": "A Hex repository hosting packages. The default public repository is hex.pm. Organizations can have private repositories.",
+      "related_endpoints": ["/repos", "/repos/{name}"]
+    },
+    {
+      "term": "Organization",
+      "definition": "A group account that can own private packages and manage members with different roles (admin, write, read).",
+      "related_endpoints": ["/orgs", "/orgs/{name}"]
+    },
+    {
+      "term": "Owner",
+      "definition": "A user who has publishing rights to a package. Packages can have multiple owners.",
+      "related_endpoints": ["/packages/{name}/owners"]
+    },
+    {
+      "term": "API Key",
+      "definition": "A token used for authenticating API requests. Keys have named permissions scoped to specific domains and resources.",
+      "related_endpoints": ["/keys", "/keys/{name}"]
+    },
+    {
+      "term": "Tarball",
+      "definition": "A compressed archive (`.tar`) containing a package release. Must conform to the Hex tarball specification.",
+      "url": "https://github.com/hexpm/specifications/blob/master/package_tarball.md"
+    },
+    {
+      "term": "Retirement",
+      "definition": "A status applied to a release indicating it should not be used. Reasons include: other, invalid, security, deprecated, renamed.",
+      "related_endpoints": ["/packages/{name}/releases/{version}/retire"]
+    },
+    {
+      "term": "HexDocs",
+      "definition": "The documentation hosting service for Hex packages at hexdocs.pm. Documentation is published as a tarball.",
+      "url": "https://hexdocs.pm"
+    },
+    {
+      "term": "BEAM",
+      "definition": "The Erlang virtual machine (Bogdan/Björn's Erlang Abstract Machine). Hex supports all BEAM languages including Elixir, Erlang, and Gleam.",
+      "url": "https://www.erlang.org"
+    },
+    {
+      "term": "Device Authorization Grant",
+      "definition": "OAuth2 flow (RFC 8628) used for obtaining access tokens on devices that cannot easily display a browser. Used as the primary OAuth method in Hex.",
+      "url": "https://datatracker.ietf.org/doc/html/rfc8628"
+    },
+    {
+      "term": "Two-Factor Authentication (2FA)",
+      "definition": "Optional additional security requiring a TOTP code sent in the x-hex-otp header for write operations.",
+      "related_header": "x-hex-otp"
+    },
+    {
+      "term": "Rate Limiting",
+      "definition": "100 requests per minute per IP for unauthenticated requests; 500 per minute for authenticated users. Status returned in X-RateLimit-* headers.",
+      "related_headers": ["X-RateLimit-Limit", "X-RateLimit-Remaining", "X-RateLimit-Reset"]
+    },
+    {
+      "term": "Conditional Request",
+      "definition": "HTTP caching mechanism using ETag and Last-Modified headers with If-None-Match and If-Modified-Since. Returns 304 Not Modified if unchanged.",
+      "related_headers": ["ETag", "Last-Modified"]
+    },
+    {
+      "term": "Audit Log",
+      "definition": "A record of actions performed by users or systems, including actor, action type, timestamp, and parameters.",
+      "related_endpoints": ["/users/me/audit-logs", "/orgs/{name}/audit-logs", "/packages/{name}/audit-logs"]
+    }
+  ]
+}

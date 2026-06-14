@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/hex-pm/main/json-schema/release.json",
+  "title": "Hex.pm Release",
+  "description": "Schema for a Hex.pm package release as returned by the API.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semantic version string."
+    },
+    "checksum": {
+      "type": "string",
+      "description": "SHA-256 checksum of the release tarball."
+    },
+    "has_docs": {
+      "type": "boolean",
+      "description": "Whether documentation has been published for this release."
+    },
+    "url": { "type": "string", "format": "uri" },
+    "package_url": { "type": "string", "format": "uri" },
+    "docs_html_url": { "type": ["string", "null"], "format": "uri" },
+    "html_url": { "type": "string", "format": "uri" },
+    "downloads": { "type": "integer", "minimum": 0 },
+    "meta": {
+      "type": "object",
+      "description": "Release metadata.",
+      "properties": {
+        "app": { "type": "string", "description": "OTP application name." },
+        "build_tools": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Build tools used (e.g. mix, rebar3)."
+        },
+        "elixir": { "type": "string", "description": "Required Elixir version constraint." }
+      }
+    },
+    "retirement": {
+      "type": ["object", "null"],
+      "description": "Retirement information, if the release is retired.",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "enum": ["other", "invalid", "security", "deprecated", "renamed"]
+        },
+        "message": { "type": ["string", "null"] }
+      },
+      "required": ["reason"]
+    },
+    "requirements": {
+      "type": "object",
+      "description": "Package dependencies keyed by package name.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "requirement": { "type": "string", "description": "Version requirement constraint." },
+          "optional": { "type": "boolean", "default": false },
+          "app": { "type": "string", "description": "OTP application name override." },
+          "repository": { "type": "string", "description": "Repository name if not from main hex.pm." }
+        },
+        "required": ["requirement"]
+      }
+    },
+    "inserted_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["version", "url"]
+}

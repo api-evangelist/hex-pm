@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/hex-pm/main/json-schema/package.json",
+  "title": "Hex.pm Package",
+  "description": "Schema for a Hex.pm package as returned by the API.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique package name."
+    },
+    "html_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the package page on hex.pm."
+    },
+    "docs_html_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL to package documentation on hexdocs.pm."
+    },
+    "meta": {
+      "type": "object",
+      "description": "Package metadata.",
+      "properties": {
+        "description": { "type": "string" },
+        "licenses": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "links": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "maintainers": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "releases": {
+      "type": "array",
+      "description": "All releases of this package.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "inserted_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["version", "url"]
+      }
+    },
+    "owners": {
+      "type": "array",
+      "description": "Package owners.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "downloads": {
+      "type": "object",
+      "description": "Download statistics.",
+      "properties": {
+        "all": { "type": "integer", "minimum": 0 },
+        "recent": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "inserted_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "url": { "type": "string", "format": "uri" }
+  },
+  "required": ["name", "url"]
+}

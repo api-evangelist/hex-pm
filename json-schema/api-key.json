@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/hex-pm/main/json-schema/api-key.json",
+  "title": "Hex.pm API Key",
+  "description": "Schema for a Hex.pm API key as returned by the API.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique name for this API key."
+    },
+    "permissions": {
+      "type": "array",
+      "description": "List of permissions granted to this key.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Permission domain (api, repositories, docs)."
+          },
+          "resource": {
+            "type": "string",
+            "description": "Specific resource or * for all resources."
+          }
+        },
+        "required": ["domain"]
+      }
+    },
+    "authing_key": {
+      "type": "boolean",
+      "description": "True if the current request is authenticated with this key."
+    },
+    "secret": {
+      "type": "string",
+      "description": "The secret key value — only returned once at creation time."
+    },
+    "inserted_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "url": { "type": "string", "format": "uri" }
+  },
+  "required": ["name", "permissions"]
+}

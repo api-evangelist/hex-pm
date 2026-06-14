@@ -1,0 +1,59 @@
+{
+  "summary": "Search Packages Example",
+  "description": "Example of searching packages using GET /packages with search and sort parameters.",
+  "request": {
+    "method": "GET",
+    "url": "https://hex.pm/api/packages?search=name:phoenix*&sort=recent_downloads&page=1",
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "MyHexClient/1.0.0"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-RateLimit-Limit": "100",
+      "X-RateLimit-Remaining": "98",
+      "X-RateLimit-Reset": "1718236800"
+    },
+    "body": [
+      {
+        "name": "phoenix",
+        "html_url": "https://hex.pm/packages/phoenix",
+        "docs_html_url": "https://hexdocs.pm/phoenix",
+        "meta": {
+          "description": "Productive. Reliable. Fast.",
+          "licenses": ["MIT"],
+          "links": { "GitHub": "https://github.com/phoenixframework/phoenix" },
+          "maintainers": ["Chris McCord"]
+        },
+        "downloads": {
+          "all": 45000000,
+          "recent": 500000
+        },
+        "inserted_at": "2014-01-01T00:00:00.000000Z",
+        "updated_at": "2024-06-01T12:00:00.000000Z",
+        "url": "https://hex.pm/api/packages/phoenix"
+      },
+      {
+        "name": "phoenix_live_view",
+        "html_url": "https://hex.pm/packages/phoenix_live_view",
+        "docs_html_url": "https://hexdocs.pm/phoenix_live_view",
+        "meta": {
+          "description": "Rich, real-time user experiences with server-rendered HTML.",
+          "licenses": ["MIT"],
+          "links": { "GitHub": "https://github.com/phoenixframework/phoenix_live_view" },
+          "maintainers": ["Chris McCord"]
+        },
+        "downloads": {
+          "all": 30000000,
+          "recent": 400000
+        },
+        "inserted_at": "2019-04-01T00:00:00.000000Z",
+        "updated_at": "2024-06-01T12:00:00.000000Z",
+        "url": "https://hex.pm/api/packages/phoenix_live_view"
+      }
+    ]
+  }
+}

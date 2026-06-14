@@ -1,0 +1,43 @@
+{
+  "summary": "Create API Key Example",
+  "description": "Example request and response for POST /keys to create a new API key.",
+  "request": {
+    "method": "POST",
+    "url": "https://hex.pm/api/keys",
+    "headers": {
+      "Authorization": "myexistingapitoken",
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "User-Agent": "MyHexClient/1.0.0"
+    },
+    "body": {
+      "name": "my-ci-key",
+      "permissions": [
+        {
+          "domain": "api",
+          "resource": "*"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "my-ci-key",
+      "permissions": [
+        {
+          "domain": "api",
+          "resource": "*"
+        }
+      ],
+      "authing_key": false,
+      "secret": "abc123secrettoken456def",
+      "inserted_at": "2026-06-13T00:00:00.000000Z",
+      "updated_at": "2026-06-13T00:00:00.000000Z",
+      "url": "https://hex.pm/api/keys/my-ci-key"
+    }
+  }
+}

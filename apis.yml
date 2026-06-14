@@ -25,6 +25,8 @@ apis:
       - type: Documentation
         url: https://hex.pm/docs
       - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/openapi/openapi.json
+      - type: ApiaryBlueprint
         url: https://github.com/hexpm/specifications/blob/master/apiary.apib
       - type: Specifications
         url: https://github.com/hexpm/specifications

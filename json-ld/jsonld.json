@@ -1,0 +1,103 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "hex": "https://hex.pm/vocab#",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "https://hex.pm/api",
+      "@type": "hydra:ApiDocumentation",
+      "name": "Hex.pm API",
+      "description": "REST API for the Hex.pm package registry for the Erlang and Elixir ecosystems.",
+      "url": "https://hex.pm/docs/api",
+      "provider": {
+        "@type": "Organization",
+        "name": "Hex.pm",
+        "url": "https://hex.pm",
+        "email": "support@hex.pm",
+        "sameAs": "https://github.com/hexpm"
+      }
+    },
+    {
+      "@id": "hex:Package",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Package",
+      "rdfs:comment": "A software library or application published to the Hex.pm registry.",
+      "rdfs:subClassOf": "schema:SoftwareApplication",
+      "properties": {
+        "name": {
+          "@type": "xsd:string",
+          "rdfs:comment": "Unique package identifier on hex.pm."
+        },
+        "description": {
+          "@type": "xsd:string",
+          "rdfs:comment": "Human-readable description of the package."
+        },
+        "downloads": {
+          "@type": "xsd:integer",
+          "rdfs:comment": "Total download count."
+        },
+        "html_url": {
+          "@type": "xsd:anyURI",
+          "rdfs:comment": "URL to the package page on hex.pm."
+        },
+        "inserted_at": {
+          "@type": "xsd:dateTime",
+          "rdfs:comment": "Publication date of the package."
+        }
+      }
+    },
+    {
+      "@id": "hex:Release",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Release",
+      "rdfs:comment": "A versioned release of a Hex.pm package.",
+      "rdfs:subClassOf": "schema:SoftwareApplication",
+      "properties": {
+        "version": {
+          "@type": "xsd:string",
+          "rdfs:comment": "Semantic version string (e.g. 1.0.0)."
+        },
+        "checksum": {
+          "@type": "xsd:string",
+          "rdfs:comment": "SHA-256 checksum of the release tarball."
+        },
+        "has_docs": {
+          "@type": "xsd:boolean",
+          "rdfs:comment": "Whether documentation is published for this release."
+        }
+      }
+    },
+    {
+      "@id": "hex:Organization",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Organization",
+      "rdfs:comment": "A Hex.pm organization that can own private packages and manage members.",
+      "rdfs:subClassOf": "schema:Organization"
+    },
+    {
+      "@id": "hex:ApiKey",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ApiKey",
+      "rdfs:comment": "An authentication credential for accessing the Hex.pm API.",
+      "properties": {
+        "name": {
+          "@type": "xsd:string",
+          "rdfs:comment": "Human-readable name for the API key."
+        },
+        "permissions": {
+          "rdfs:comment": "List of domain/resource permissions granted to this key."
+        }
+      }
+    },
+    {
+      "@id": "hex:Repository",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Repository",
+      "rdfs:comment": "A Hex package repository. The primary public repository is hex.pm.",
+      "rdfs:subClassOf": "schema:DataCatalog"
+    }
+  ]
+}

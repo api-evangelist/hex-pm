@@ -1,0 +1,61 @@
+{
+  "summary": "Fetch a Package Example",
+  "description": "Example response from GET /packages/{name} for the 'phoenix' package.",
+  "request": {
+    "method": "GET",
+    "url": "https://hex.pm/api/packages/phoenix",
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "MyHexClient/1.0.0"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-RateLimit-Limit": "100",
+      "X-RateLimit-Remaining": "99",
+      "X-RateLimit-Reset": "1718236800"
+    },
+    "body": {
+      "name": "phoenix",
+      "html_url": "https://hex.pm/packages/phoenix",
+      "docs_html_url": "https://hexdocs.pm/phoenix",
+      "meta": {
+        "description": "Productive. Reliable. Fast. A productive web framework that does not compromise speed or maintainability.",
+        "licenses": ["MIT"],
+        "links": {
+          "GitHub": "https://github.com/phoenixframework/phoenix",
+          "Website": "https://www.phoenixframework.org"
+        },
+        "maintainers": ["Chris McCord"]
+      },
+      "releases": [
+        {
+          "version": "1.7.14",
+          "url": "https://hex.pm/api/packages/phoenix/releases/1.7.14",
+          "inserted_at": "2024-06-01T12:00:00.000000Z"
+        },
+        {
+          "version": "1.7.13",
+          "url": "https://hex.pm/api/packages/phoenix/releases/1.7.13",
+          "inserted_at": "2024-04-15T10:30:00.000000Z"
+        }
+      ],
+      "owners": [
+        {
+          "username": "chrismccord",
+          "email": "chris@example.com",
+          "url": "https://hex.pm/api/users/chrismccord"
+        }
+      ],
+      "downloads": {
+        "all": 45000000,
+        "recent": 500000
+      },
+      "inserted_at": "2014-01-01T00:00:00.000000Z",
+      "updated_at": "2024-06-01T12:00:00.000000Z",
+      "url": "https://hex.pm/api/packages/phoenix"
+    }
+  }
+}
