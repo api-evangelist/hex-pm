@@ -1,0 +1,81 @@
+name: Hex.pm
+description: Package registry for the Erlang and Elixir ecosystems with a REST API
+  for searching packages, accessing metadata, managing releases, user authentication,
+  and organization management. Supports public and private packages with HexDocs
+  integration.
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/apis.yml
+version: "0.19"
+apis:
+  - name: Hex.pm API
+    description: REST API for the Hex.pm package registry, providing endpoints to
+      search and retrieve package metadata, manage releases, handle authentication,
+      manage API keys, and administer organizations and package ownership.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://hex.pm/docs
+    baseURL: https://hex.pm/api
+    tags:
+      - Package Registry
+      - Erlang
+      - Elixir
+      - Gleam
+      - BEAM
+      - Open Source
+    properties:
+      - type: Documentation
+        url: https://hex.pm/docs
+      - type: OpenAPI
+        url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+      - type: Specifications
+        url: https://github.com/hexpm/specifications
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+    contact:
+      - FN: Hex Support
+        email: support@hex.pm
+      - FN: Hex Security
+        email: security@hex.pm
+common:
+  - type: GitHubOrganization
+    url: https://github.com/hexpm
+  - type: Pricing
+    url: https://hex.pm/pricing
+  - type: Status
+    url: https://status.hex.pm
+  - type: Blog
+    url: https://hex.pm/blog
+  - type: About
+    url: https://hex.pm/about
+  - type: TermsOfService
+    url: https://hex.pm/policies/terms
+  - type: PrivacyPolicy
+    url: https://hex.pm/policies/privacy
+  - type: CodeOfConduct
+    url: https://hex.pm/policies/codeofconduct
+  - type: SecurityAdvisories
+    url: https://osv.dev/list?ecosystem=Hex
+  - type: Login
+    url: https://hex.pm/login
+  - type: Register
+    url: https://hex.pm/signup
+  - type: SourceCode
+    url: https://github.com/hexpm/hexpm
+  - type: Contact
+    url: mailto:support@hex.pm
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+tags:
+  - Package Registry
+  - Erlang
+  - Elixir
+  - Gleam
+  - BEAM
+  - Open Source
+  - Package Manager
+created: "2026-06-13"
+modified: "2026-06-13"

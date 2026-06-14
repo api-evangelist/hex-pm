@@ -1,0 +1,74 @@
+finops:
+  title: Hex.pm FinOps Guide
+  description: Financial operations guidance for teams consuming the Hex.pm API,
+    covering cost management, plan selection, and usage optimization strategies.
+  url: https://hex.pm/pricing
+  spec: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+
+  cost-model:
+    type: freemium
+    description: Hex.pm uses a freemium model. Public package operations are entirely
+      free. Private packages require a paid subscription billed per organization
+      seat. Enterprise pricing is negotiated directly with the Hex team.
+    free-tier: true
+    trial-available: true
+    trial-duration: 30 days
+
+  pricing-summary:
+    - tier: Open Source
+      monthly-cost: 0.00
+      annual-cost: 0.00
+      currency: USD
+      notes: Unlimited public packages, full API access at standard rate limits
+
+    - tier: Private Packages
+      monthly-cost: 7.00
+      annual-cost: 70.00
+      currency: USD
+      notes: Per organization; annual plan saves approximately 2 months of cost
+
+    - tier: Enterprise
+      monthly-cost: custom
+      annual-cost: custom
+      currency: USD
+      notes: Contact sales at hex.pm for custom enterprise pricing
+
+  cost-optimization:
+    - strategy: Use Conditional Requests
+      description: Send ETag (If-None-Match) and If-Modified-Since headers to receive
+        304 Not Modified responses when content has not changed. These responses
+        do not count against rate limits, reducing both quota consumption and
+        bandwidth costs.
+
+    - strategy: Cache Package Metadata
+      description: Package metadata changes infrequently. Cache responses locally
+        and use ETags to validate staleness, significantly reducing API calls for
+        dependency resolution workflows.
+
+    - strategy: Authenticate All Requests
+      description: Authenticated requests receive 5x the rate limit (500 vs 100
+        req/min). Always use API tokens for automated tooling and CI/CD pipelines
+        to avoid throttling.
+
+    - strategy: Repository Endpoint for Bulk Operations
+      description: Use the repository endpoint (https://repo.hex.pm) for bulk
+        package downloads and registry syncing rather than the HTTP API. The
+        /names and /versions endpoints provide efficient bulk registry data.
+
+    - strategy: Annual Billing for Private Packages
+      description: Annual billing at $70/year versus $84/year monthly represents
+        approximately a 17% cost saving for teams committed to the private
+        packages plan.
+
+  billing-notes:
+    - Subscriptions renew automatically on the anniversary date
+    - Seat changes are pro-rated
+    - Failed payments are retried 3 times before cancellation after 15 days
+    - Data is retained for 90+ days post-cancellation
+    - EU customers pay applicable VAT; valid EU VAT numbers exempt registered companies
+    - Cancellation can occur at any time
+
+  vat-notes:
+    - All prices exclude VAT
+    - EU-based customers are required to pay applicable VAT rates
+    - EU-registered companies with valid VAT numbers are exempt from VAT charges

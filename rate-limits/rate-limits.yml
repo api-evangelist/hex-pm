@@ -1,0 +1,40 @@
+rate-limits:
+  - name: Unauthenticated Rate Limit
+    description: Rate limit applied to all requests made without authentication credentials,
+      based on originating IP address.
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+    spec: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+    requests: 100
+    period: minute
+    scope: per IP address
+    authenticated: false
+    headers:
+      - name: X-RateLimit-Limit
+        description: The maximum number of requests allowed in the current window
+      - name: X-RateLimit-Remaining
+        description: The number of requests remaining in the current window
+      - name: X-RateLimit-Reset
+        description: UNIX epoch timestamp when the rate limit window resets
+
+  - name: Authenticated Rate Limit
+    description: Rate limit applied to requests made with valid authentication credentials
+      (API token or OAuth Bearer token).
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+    spec: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+    requests: 500
+    period: minute
+    scope: per API key / token
+    authenticated: true
+    headers:
+      - name: X-RateLimit-Limit
+        description: The maximum number of requests allowed in the current window
+      - name: X-RateLimit-Remaining
+        description: The number of requests remaining in the current window
+      - name: X-RateLimit-Reset
+        description: UNIX epoch timestamp when the rate limit window resets
+
+notes:
+  - Responses with HTTP 304 Not Modified do not count against rate limit totals.
+  - Conditional requests using ETag (If-None-Match) and Last-Modified (If-Modified-Since)
+    headers are encouraged to reduce API usage.
+  - Pagination is limited to 100 items per page; use ?page= parameter to navigate.

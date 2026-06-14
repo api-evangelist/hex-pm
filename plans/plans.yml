@@ -1,0 +1,54 @@
+plans:
+  - name: Open Source
+    description: Free plan for public package hosting and distribution within the
+      Hex.pm ecosystem. Includes unlimited public packages and HexDocs integration.
+    url: https://hex.pm/pricing
+    spec: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+    price: 0.00
+    currency: USD
+    period: monthly
+    features:
+      - Unlimited public packages
+      - Public package documentation via HexDocs
+      - Multiple package owners
+      - Full access to community packages
+      - "REST API access (unauthenticated: 100 req/min, authenticated: 500 req/min)"
+      - Package search and metadata retrieval
+      - Erlang, Elixir, and Gleam ecosystem support
+
+  - name: Private Packages
+    description: Paid plan enabling private package hosting for individuals and organizations.
+      Includes all Open Source features plus private repositories and additional
+      package management capabilities.
+    url: https://hex.pm/pricing
+    spec: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+    price: 7.00
+    currency: USD
+    period: monthly
+    features:
+      - Everything in Open Source plan
+      - Unlimited private packages
+      - Private package documentation access
+      - Republish and delete package capabilities
+      - Private repository management via /repos API
+      - Organization management and member roles
+      - 30-day free trial
+      - Annual billing option ($70/year, saves ~17%)
+
+  - name: Enterprise
+    description: Custom enterprise plan for organizations requiring self-hosted
+      infrastructure, package mirroring, whitelisting, and advanced security features.
+      Contact sales for pricing.
+    url: https://hex.pm/pricing
+    spec: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+    price: 0.00
+    currency: USD
+    period: monthly
+    features:
+      - Everything in Private Packages plan
+      - Self-hosted infrastructure options
+      - Hex.pm package mirroring
+      - Package whitelist and vetting functionality
+      - Advanced security package features
+      - Custom contracts and SLAs
+      - Dedicated support
