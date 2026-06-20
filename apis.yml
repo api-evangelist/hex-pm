@@ -3,7 +3,7 @@ description: Package registry for the Erlang and Elixir ecosystems with a REST A
   for searching packages, accessing metadata, managing releases, user authentication,
   and organization management. Supports public and private packages with HexDocs
   integration.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/apis.yml
 version: "0.19"
 apis:
@@ -11,7 +11,7 @@ apis:
     description: REST API for the Hex.pm package registry, providing endpoints to
       search and retrieve package metadata, manage releases, handle authentication,
       manage API keys, and administer organizations and package ownership.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://hex.pm/docs
     baseURL: https://hex.pm/api
     tags:
