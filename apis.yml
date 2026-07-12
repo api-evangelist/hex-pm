@@ -42,6 +42,10 @@ apis:
       - FN: Hex Security
         email: security@hex.pm
 common:
+  - type: DomainSecurity
+    url: security/hex-pm-domain-security.yml
+  - type: Authentication
+    url: authentication/hex-pm-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/hexpm
   - type: Pricing

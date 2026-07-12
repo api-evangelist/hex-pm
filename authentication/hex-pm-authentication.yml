@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'API token authentication. Pass the token directly: `Authorization: token`. For
+    OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+  sources:
+  - openapi/openapi.json
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+  sources:
+  - openapi/openapi.json
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: Deprecated. Basic authentication with username and password. Only allowed on
+    specific endpoints for generating API tokens.
+  sources:
+  - openapi/openapi.json
