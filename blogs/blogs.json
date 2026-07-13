@@ -9,11 +9,11 @@
       "method": "feed"
     },
     {
-      "source": "https://hex.pm/blog",
+      "source": "https://hex.pm/feeds/blog.xml",
       "feed_url": "https://hex.pm/feeds/blog.xml",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "feed"
     },
     {
       "source": "https://status.hex.pm",
@@ -23,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 5,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 27,
+  "fetched": "2026-07-11T11:50:51Z"
 }
