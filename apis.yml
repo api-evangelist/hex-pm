@@ -42,6 +42,8 @@ apis:
       - FN: Hex Security
         email: security@hex.pm
 common:
+  - type: AgenticAccess
+    url: agentic-access/hex-pm-agentic-access.yml
   - type: DomainSecurity
     url: security/hex-pm-domain-security.yml
   - type: Authentication
