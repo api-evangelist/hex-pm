@@ -1,0 +1,432 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys Organizations API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Organizations
+  description: Organization and member management.
+paths:
+  /orgs:
+    get:
+      operationId: listOrganizations
+      summary: List all Organizations
+      description: Returns a list of all organizations the authenticated user is a member of.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of organizations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+  /orgs/{name}:
+    get:
+      operationId: getOrganization
+      summary: Fetch an Organization
+      description: Returns information about a specific organization.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      responses:
+        '200':
+          description: Organization details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          description: Organization not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: updateOrganization
+      summary: Update an Organization
+      description: Updates organization settings such as billing email.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                billing_email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Organization updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+  /orgs/{name}/audit-logs:
+    get:
+      operationId: getOrganizationAuditLogs
+      summary: Fetch Organization Audit Logs
+      description: Returns audit logs for a specific organization.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of audit log entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditLog'
+  /orgs/{name}/members:
+    get:
+      operationId: listOrganizationMembers
+      summary: List Organization Members
+      description: Returns all members of an organization.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of organization members.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationMember'
+    post:
+      operationId: addOrganizationMember
+      summary: Add Organization Member
+      description: Adds a user to an organization.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - username
+              - role
+              properties:
+                username:
+                  type: string
+                role:
+                  type: string
+                  enum:
+                  - admin
+                  - write
+                  - read
+      responses:
+        '204':
+          description: Member added successfully.
+        '422':
+          description: Validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /orgs/{name}/members/{username}:
+    get:
+      operationId: getOrganizationMember
+      summary: Get Organization Member
+      description: Returns information about a specific organization member.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      - $ref: '#/components/parameters/username'
+      responses:
+        '200':
+          description: Organization member details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationMember'
+        '404':
+          description: Member not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: updateOrganizationMember
+      summary: Update Organization Member
+      description: Updates the role of an organization member.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      - $ref: '#/components/parameters/username'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - role
+              properties:
+                role:
+                  type: string
+                  enum:
+                  - admin
+                  - write
+                  - read
+      responses:
+        '204':
+          description: Member updated.
+    delete:
+      operationId: removeOrganizationMember
+      summary: Remove Organization Member
+      description: Removes a user from an organization.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      - $ref: '#/components/parameters/username'
+      responses:
+        '204':
+          description: Member removed.
+        '404':
+          description: Member not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /orgs/{name}/keys:
+    get:
+      operationId: listOrganizationApiKeys
+      summary: List Organization API Keys
+      description: Returns all API keys for an organization.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      responses:
+        '200':
+          description: List of organization API keys.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKey'
+    post:
+      operationId: createOrganizationApiKey
+      summary: Create Organization API Key
+      description: Creates a new API key for an organization.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyCreate'
+      responses:
+        '201':
+          description: Organization API key created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '422':
+          description: Validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ApiKeyCreate:
+      type: object
+      required:
+      - name
+      - permissions
+      properties:
+        name:
+          type: string
+          description: Unique name for the API key.
+        permissions:
+          type: array
+          description: List of permissions for the key.
+          items:
+            type: object
+            required:
+            - domain
+            properties:
+              domain:
+                type: string
+                description: Permission domain (e.g., api, repositories, docs).
+              resource:
+                type: string
+                description: Resource the permission applies to (use * for all).
+    AuditLog:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Action that was performed.
+        actor:
+          type: string
+          description: Actor who performed the action.
+        params:
+          type: object
+          description: Additional parameters of the action.
+        inserted_at:
+          type: string
+          format: date-time
+    ApiKey:
+      type: object
+      properties:
+        name:
+          type: string
+          description: API key name.
+        permissions:
+          type: array
+          items:
+            type: object
+            properties:
+              domain:
+                type: string
+              resource:
+                type: string
+        authing_key:
+          type: boolean
+          description: Whether the current request is authenticated with this key.
+        secret:
+          type: string
+          description: The actual secret key (only returned on creation).
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+    OrganizationMember:
+      type: object
+      properties:
+        username:
+          type: string
+        role:
+          type: string
+          enum:
+          - admin
+          - write
+          - read
+        url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+    Organization:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Organization name.
+        billing_email:
+          type: string
+          format: email
+        seats:
+          type: integer
+          description: Number of seats.
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+  parameters:
+    org_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization name.
+    page:
+      name: page
+      in: query
+      description: Page number for paginated results. Starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    username:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Username.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api

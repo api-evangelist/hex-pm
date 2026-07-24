@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys Repositories API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Repositories
+  description: Hex repository management.
+paths:
+  /repos:
+    get:
+      operationId: listRepositories
+      summary: List all Repositories
+      description: Returns a list of all available Hex repositories.
+      tags:
+      - Repositories
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of repositories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repository'
+  /repos/{name}:
+    get:
+      operationId: getRepository
+      summary: Fetch a Repository
+      description: Returns information about a specific repository.
+      tags:
+      - Repositories
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      responses:
+        '200':
+          description: Repository details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+        '404':
+          description: Repository not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Repository:
+      type: object
+      properties:
+        name:
+          type: string
+        public_key:
+          type: string
+          description: Repository's public key for signature verification.
+        url:
+          type: string
+          format: uri
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  parameters:
+    org_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization name.
+    page:
+      name: page
+      in: query
+      description: Page number for paginated results. Starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api

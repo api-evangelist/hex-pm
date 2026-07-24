@@ -1,0 +1,241 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys Users API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Users
+  description: User account management.
+paths:
+  /users:
+    post:
+      operationId: createUser
+      summary: Create a User
+      description: Register a new user account.
+      tags:
+      - Users
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '422':
+          description: Validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/{username_or_email}:
+    get:
+      operationId: getUser
+      summary: Fetch a User
+      description: Returns information about a specific user.
+      tags:
+      - Users
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/username_or_email'
+      responses:
+        '200':
+          description: User details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      summary: Fetch currently authenticated user
+      description: Returns information about the currently authenticated user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Currently authenticated user details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/me/audit-logs:
+    get:
+      operationId: getUserAuditLogs
+      summary: Fetch User Audit Logs
+      description: Returns audit logs for the currently authenticated user.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of audit log entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditLog'
+  /users/{username_or_email}/reset:
+    post:
+      operationId: resetUserPassword
+      summary: Reset User password
+      description: Sends a password reset email to the user.
+      tags:
+      - Users
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/username_or_email'
+      responses:
+        '204':
+          description: Password reset email sent.
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    AuditLog:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Action that was performed.
+        actor:
+          type: string
+          description: Actor who performed the action.
+        params:
+          type: object
+          description: Additional parameters of the action.
+        inserted_at:
+          type: string
+          format: date-time
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Unique username.
+        email:
+          type: string
+          format: email
+          description: Email address.
+        inserted_at:
+          type: string
+          format: date-time
+          description: Account creation timestamp.
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp.
+        url:
+          type: string
+          format: uri
+          description: API URL for this user.
+        handles:
+          type: object
+          description: Social handles.
+          properties:
+            github:
+              type: string
+            twitter:
+              type: string
+    UserCreate:
+      type: object
+      required:
+      - username
+      - email
+      - password
+      properties:
+        username:
+          type: string
+          description: Username (3-32 alphanumeric characters).
+        email:
+          type: string
+          format: email
+          description: Email address.
+        password:
+          type: string
+          format: password
+          description: Password.
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number for paginated results. Starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    username_or_email:
+      name: username_or_email
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Username or email address of the user.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api

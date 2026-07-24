@@ -1,0 +1,177 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys Package Owners API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Package Owners
+  description: Package ownership management.
+paths:
+  /packages/{name}/owners:
+    get:
+      operationId: listPackageOwners
+      summary: Fetch Package Owners
+      description: Returns all owners of a package.
+      tags:
+      - Package Owners
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      responses:
+        '200':
+          description: List of package owners.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Owner'
+        '404':
+          description: Package not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /packages/{name}/owners/{username}:
+    get:
+      operationId: getPackageOwner
+      summary: Fetch a Package Owner
+      description: Returns information about a specific owner of a package.
+      tags:
+      - Package Owners
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/username'
+      responses:
+        '200':
+          description: Package owner details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Owner'
+        '404':
+          description: Owner not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: addPackageOwner
+      summary: Add a Package Owner
+      description: Adds a user as an owner of a package.
+      tags:
+      - Package Owners
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/username'
+      responses:
+        '204':
+          description: Owner added.
+        '403':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Package or user not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: removePackageOwner
+      summary: Remove a Package Owner
+      description: Removes a user as an owner of a package.
+      tags:
+      - Package Owners
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/username'
+      responses:
+        '204':
+          description: Owner removed.
+        '403':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Package or user not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Owner:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  parameters:
+    username:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Username.
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api

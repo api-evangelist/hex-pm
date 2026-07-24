@@ -1,0 +1,265 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys Packages API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Packages
+  description: Package search and metadata.
+paths:
+  /packages:
+    get:
+      operationId: listPackages
+      summary: List all Packages
+      description: Returns a paginated list of packages. Supports search and sorting.
+      tags:
+      - Packages
+      security: []
+      parameters:
+      - name: sort
+        in: query
+        description: 'Sort order. Options: name, downloads, inserted_at, updated_at, recent_downloads.'
+        schema:
+          type: string
+          enum:
+          - name
+          - downloads
+          - inserted_at
+          - updated_at
+          - recent_downloads
+      - name: search
+        in: query
+        description: 'Search string. Supports field search: name:nerves*, description:framework, extra:type,nerves.'
+        schema:
+          type: string
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of packages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Package'
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+  /packages/{name}:
+    get:
+      operationId: getPackage
+      summary: Fetch a Package
+      description: Returns information about a specific package including all releases and owners.
+      tags:
+      - Packages
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      responses:
+        '200':
+          description: Package details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+        '404':
+          description: Package not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /packages/{name}/audit-logs:
+    get:
+      operationId: getPackageAuditLogs
+      summary: Fetch Package Audit Logs
+      description: Returns audit logs for a specific package.
+      tags:
+      - Packages
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of audit log entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditLog'
+components:
+  schemas:
+    AuditLog:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Action that was performed.
+        actor:
+          type: string
+          description: Actor who performed the action.
+        params:
+          type: object
+          description: Additional parameters of the action.
+        inserted_at:
+          type: string
+          format: date-time
+    Package:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Package name.
+        html_url:
+          type: string
+          format: uri
+          description: URL to package page on hex.pm.
+        docs_html_url:
+          type: string
+          format: uri
+          description: URL to package documentation.
+        meta:
+          type: object
+          description: Package metadata.
+          properties:
+            description:
+              type: string
+            licenses:
+              type: array
+              items:
+                type: string
+            links:
+              type: object
+              additionalProperties:
+                type: string
+            maintainers:
+              type: array
+              items:
+                type: string
+        releases:
+          type: array
+          description: List of releases.
+          items:
+            $ref: '#/components/schemas/ReleaseSummary'
+        owners:
+          type: array
+          description: Package owners.
+          items:
+            $ref: '#/components/schemas/Owner'
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+        downloads:
+          type: object
+          description: Download counts.
+          properties:
+            all:
+              type: integer
+            recent:
+              type: integer
+    ReleaseSummary:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Release version.
+        url:
+          type: string
+          format: uri
+        inserted_at:
+          type: string
+          format: date-time
+    Owner:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  headers:
+    X-RateLimit-Limit:
+      description: The maximum number of requests permitted per minute.
+      schema:
+        type: integer
+    X-RateLimit-Reset:
+      description: The time at which the rate limit window resets in UNIX epoch.
+      schema:
+        type: integer
+    X-RateLimit-Remaining:
+      description: The remaining number of requests allowed until reset.
+      schema:
+        type: integer
+  parameters:
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
+    page:
+      name: page
+      in: query
+      description: Page number for paginated results. Starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api

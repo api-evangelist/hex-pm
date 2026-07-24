@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys Documentation API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Documentation
+  description: HexDocs package documentation.
+paths:
+  /packages/{name}/releases/{version}/docs:
+    get:
+      operationId: getPackageDocs
+      summary: Get Package Documentation
+      description: Returns documentation for a specific release.
+      tags:
+      - Documentation
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/release_version'
+      responses:
+        '200':
+          description: Documentation tarball.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Documentation not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: publishPackageDocs
+      summary: Publish Package Documentation
+      description: Publishes documentation for a release. Body must be a gzipped tarball.
+      tags:
+      - Documentation
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/release_version'
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: Documentation published.
+        '422':
+          description: Invalid documentation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: removePackageDocs
+      summary: Remove Package Documentation
+      description: Removes documentation for a specific release.
+      tags:
+      - Documentation
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/release_version'
+      responses:
+        '204':
+          description: Documentation removed.
+        '404':
+          description: Documentation not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    release_version:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Release version (e.g. 1.0.0).
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
+  schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api

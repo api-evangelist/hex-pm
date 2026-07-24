@@ -1,0 +1,216 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys OAuth API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: OAuth
+  description: OAuth2 Device Authorization Grant flow.
+paths:
+  /oauth/device_authorization:
+    post:
+      operationId: initiateDeviceAuthorization
+      summary: Initiate Device Authorization
+      description: Initiates the OAuth2 Device Authorization Grant flow (RFC 8628). Returns a device code and user code for the client to display.
+      tags:
+      - OAuth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceAuthorizationRequest'
+      responses:
+        '200':
+          description: Device authorization response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceAuthorizationResponse'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /oauth/token:
+    post:
+      operationId: requestToken
+      summary: Request Token
+      description: Exchanges a device code for an OAuth2 access token after user has authorized the device.
+      tags:
+      - OAuth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: Token response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Authorization pending or invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  error_description:
+                    type: string
+  /oauth/revoke:
+    post:
+      operationId: revokeToken
+      summary: Revoke Token
+      description: Revokes an OAuth2 access token.
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - token
+              properties:
+                token:
+                  type: string
+                  description: The token to revoke.
+      responses:
+        '200':
+          description: Token revoked.
+  /oauth/revoke_by_hash:
+    post:
+      operationId: revokeTokenByHash
+      summary: Revoke Token by Hash
+      description: Revokes an OAuth2 token using its hash value.
+      tags:
+      - OAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - token_hash
+              properties:
+                token_hash:
+                  type: string
+                  description: The SHA-256 hash of the token to revoke.
+      responses:
+        '200':
+          description: Token revoked.
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+    TokenRequest:
+      type: object
+      required:
+      - grant_type
+      - client_id
+      - device_code
+      properties:
+        grant_type:
+          type: string
+          example: urn:ietf:params:oauth:grant-type:device_code
+        client_id:
+          type: string
+        device_code:
+          type: string
+    DeviceAuthorizationResponse:
+      type: object
+      properties:
+        device_code:
+          type: string
+        user_code:
+          type: string
+        verification_uri:
+          type: string
+          format: uri
+        verification_uri_complete:
+          type: string
+          format: uri
+        expires_in:
+          type: integer
+        interval:
+          type: integer
+    DeviceAuthorizationRequest:
+      type: object
+      required:
+      - client_id
+      properties:
+        client_id:
+          type: string
+        scope:
+          type: string
+        offline_access:
+          type: boolean
+        name:
+          type: string
+          description: Name of the client to display.
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api

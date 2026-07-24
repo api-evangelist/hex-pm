@@ -1,0 +1,283 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys Releases API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Releases
+  description: Package release publishing and management.
+paths:
+  /packages/{name}/releases/{version}:
+    get:
+      operationId: getRelease
+      summary: Fetch a Release
+      description: Returns detailed information about a specific release of a package.
+      tags:
+      - Releases
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/release_version'
+      responses:
+        '200':
+          description: Release details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '404':
+          description: Release not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: revertRelease
+      summary: Revert a Release
+      description: Removes a release. Only possible within one hour of publishing and if no other packages depend on it.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/release_version'
+      responses:
+        '204':
+          description: Release reverted successfully.
+        '403':
+          description: Not authorized or time window expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Release not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /publish:
+    post:
+      operationId: publishRelease
+      summary: Publish a Release
+      description: Publishes a new release for a package. The body must be a valid Hex package tarball.
+      tags:
+      - Releases
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+              description: Hex package tarball.
+      responses:
+        '201':
+          description: Release published.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Release'
+        '400':
+          description: Invalid tarball.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /packages/{name}/releases/{version}/retire:
+    post:
+      operationId: retireRelease
+      summary: Mark Release as Retired
+      description: Marks a release as retired with a reason and optional message.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/release_version'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetireRelease'
+      responses:
+        '204':
+          description: Release marked as retired.
+        '404':
+          description: Release not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: unretireRelease
+      summary: Unmark Release as Retired
+      description: Removes the retired status from a release.
+      tags:
+      - Releases
+      parameters:
+      - $ref: '#/components/parameters/package_name'
+      - $ref: '#/components/parameters/release_version'
+      responses:
+        '204':
+          description: Release retirement removed.
+        '404':
+          description: Release not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Release:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Release version.
+        checksum:
+          type: string
+          description: SHA-256 checksum of the release tarball.
+        has_docs:
+          type: boolean
+          description: Whether documentation is published.
+        url:
+          type: string
+          format: uri
+        package_url:
+          type: string
+          format: uri
+        docs_html_url:
+          type: string
+          format: uri
+        html_url:
+          type: string
+          format: uri
+        downloads:
+          type: integer
+        meta:
+          type: object
+          properties:
+            app:
+              type: string
+            build_tools:
+              type: array
+              items:
+                type: string
+            elixir:
+              type: string
+        retirement:
+          type: object
+          nullable: true
+          properties:
+            reason:
+              type: string
+              enum:
+              - other
+              - invalid
+              - security
+              - deprecated
+              - renamed
+            message:
+              type: string
+        requirements:
+          type: object
+          description: Package dependencies.
+          additionalProperties:
+            type: object
+            properties:
+              requirement:
+                type: string
+              optional:
+                type: boolean
+              app:
+                type: string
+              repository:
+                type: string
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    RetireRelease:
+      type: object
+      required:
+      - reason
+      properties:
+        reason:
+          type: string
+          enum:
+          - other
+          - invalid
+          - security
+          - deprecated
+          - renamed
+          description: Reason for retiring the release.
+        message:
+          type: string
+          description: Optional message explaining retirement.
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  parameters:
+    release_version:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Release version (e.g. 1.0.0).
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api

@@ -1,0 +1,263 @@
+openapi: 3.0.3
+info:
+  title: Hex.pm API Keys API
+  description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
+  version: 1.0.0
+  contact:
+    name: Hex Support
+    email: support@hex.pm
+    url: https://hex.pm/docs
+  termsOfService: https://hex.pm/policies/terms
+  license:
+    name: Hex.pm Terms of Service
+    url: https://hex.pm/policies/terms
+servers:
+- url: https://hex.pm/api
+  description: Hex.pm Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: API Keys
+  description: API key creation and management.
+paths:
+  /keys:
+    get:
+      operationId: listApiKeys
+      summary: List all API Keys
+      description: Returns all API keys for the authenticated user.
+      tags:
+      - API Keys
+      responses:
+        '200':
+          description: List of API keys.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKey'
+    post:
+      operationId: createApiKey
+      summary: Create an API Key
+      description: Creates a new API key. The secret is only returned on creation.
+      tags:
+      - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyCreate'
+      responses:
+        '201':
+          description: API key created. The secret field is only returned here.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '422':
+          description: Validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: removeAllApiKeys
+      summary: Remove all API Keys
+      description: Removes all API keys for the authenticated user. Requires Basic authentication.
+      tags:
+      - API Keys
+      security:
+      - BasicAuth: []
+      responses:
+        '204':
+          description: All API keys removed.
+  /keys/{name}:
+    get:
+      operationId: getApiKey
+      summary: Fetch an API Key
+      description: Returns information about a specific API key.
+      tags:
+      - API Keys
+      parameters:
+      - $ref: '#/components/parameters/key_name'
+      responses:
+        '200':
+          description: API key details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '404':
+          description: Key not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: removeApiKey
+      summary: Remove an API Key
+      description: Removes a specific API key.
+      tags:
+      - API Keys
+      parameters:
+      - $ref: '#/components/parameters/key_name'
+      responses:
+        '200':
+          description: API key removed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '404':
+          description: Key not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /orgs/{name}/keys:
+    get:
+      operationId: listOrganizationApiKeys
+      summary: List Organization API Keys
+      description: Returns all API keys for an organization.
+      tags:
+      - API Keys
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      responses:
+        '200':
+          description: List of organization API keys.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKey'
+    post:
+      operationId: createOrganizationApiKey
+      summary: Create Organization API Key
+      description: Creates a new API key for an organization.
+      tags:
+      - API Keys
+      parameters:
+      - $ref: '#/components/parameters/org_name'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyCreate'
+      responses:
+        '201':
+          description: Organization API key created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '422':
+          description: Validation error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ApiKeyCreate:
+      type: object
+      required:
+      - name
+      - permissions
+      properties:
+        name:
+          type: string
+          description: Unique name for the API key.
+        permissions:
+          type: array
+          description: List of permissions for the key.
+          items:
+            type: object
+            required:
+            - domain
+            properties:
+              domain:
+                type: string
+                description: Permission domain (e.g., api, repositories, docs).
+              resource:
+                type: string
+                description: Resource the permission applies to (use * for all).
+    ApiKey:
+      type: object
+      properties:
+        name:
+          type: string
+          description: API key name.
+        permissions:
+          type: array
+          items:
+            type: object
+            properties:
+              domain:
+                type: string
+              resource:
+                type: string
+        authing_key:
+          type: boolean
+          description: Whether the current request is authenticated with this key.
+        secret:
+          type: string
+          description: The actual secret key (only returned on creation).
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  parameters:
+    key_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Name of the API key.
+    org_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization name.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API token authentication. Pass the token directly: `Authorization: token`. For OAuth2 Bearer tokens use: `Authorization: Bearer token`.'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token obtained via Device Authorization Grant (RFC 8628).
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Deprecated. Basic authentication with username and password. Only allowed on specific endpoints for generating API tokens.
+externalDocs:
+  description: Hex.pm API Documentation
+  url: https://hex.pm/docs/api
