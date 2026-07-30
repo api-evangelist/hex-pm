@@ -3,44 +3,311 @@ description: Package registry for the Erlang and Elixir ecosystems with a REST A
   for searching packages, accessing metadata, managing releases, user authentication,
   and organization management. Supports public and private packages with HexDocs
   integration.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hex-pm.png
 url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/apis.yml
 version: "0.19"
 apis:
-  - name: Hex.pm API
-    description: REST API for the Hex.pm package registry, providing endpoints to
-      search and retrieve package metadata, manage releases, handle authentication,
-      manage API keys, and administer organizations and package ownership.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://hex.pm/docs
-    baseURL: https://hex.pm/api
-    tags:
-      - Package Registry
-      - Erlang
-      - Elixir
-      - Gleam
-      - BEAM
-      - Open Source
-    properties:
-      - type: Documentation
-        url: https://hex.pm/docs
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/openapi/openapi.json
-      - type: ApiaryBlueprint
-        url: https://github.com/hexpm/specifications/blob/master/apiary.apib
-      - type: Specification
-        url: https://github.com/hexpm/specifications
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
-    contact:
-      - FN: Hex Support
-        email: support@hex.pm
-      - FN: Hex Security
-        email: security@hex.pm
+- aid: hex-pm:hex-pm-api-keys-api
+  name: Hex.pm API Keys API
+  description: API key creation and management.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-authentication-api
+  name: Hex.pm Authentication API
+  description: Authentication verification.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-documentation-api
+  name: Hex.pm Documentation API
+  description: HexDocs package documentation.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Documentation
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-documentation-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-index-api
+  name: Hex.pm Index API
+  description: API index and discovery.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Index
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-index-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-oauth-api
+  name: Hex.pm OAuth API
+  description: OAuth2 Device Authorization Grant flow.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-oauth-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-organizations-api
+  name: Hex.pm Organizations API
+  description: Organization and member management.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-package-owners-api
+  name: Hex.pm Package Owners API
+  description: Package ownership management.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Package Owners
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-package-owners-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-packages-api
+  name: Hex.pm Packages API
+  description: Package search and metadata.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-packages-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-releases-api
+  name: Hex.pm Releases API
+  description: Package release publishing and management.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Releases
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-releases-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-repositories-api
+  name: Hex.pm Repositories API
+  description: Hex repository management.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Repositories
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-repositories-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-users-api
+  name: Hex.pm Users API
+  description: User account management.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-users-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-utilities-api
+  name: Hex.pm Utilities API
+  description: Utility endpoints.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/hex-pm-agentic-access.yml
