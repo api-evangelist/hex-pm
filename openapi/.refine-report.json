@@ -1,0 +1,36 @@
+{
+  "provider": "hex-pm",
+  "sources": [
+    "hex-pm-api-keys-api-openapi.yml",
+    "hex-pm-authentication-api-openapi.yml",
+    "hex-pm-documentation-api-openapi.yml",
+    "hex-pm-index-api-openapi.yml",
+    "hex-pm-oauth-api-openapi.yml",
+    "hex-pm-organizations-api-openapi.yml",
+    "hex-pm-package-owners-api-openapi.yml",
+    "hex-pm-packages-api-openapi.yml",
+    "hex-pm-releases-api-openapi.yml",
+    "hex-pm-repositories-api-openapi.yml",
+    "hex-pm-users-api-openapi.yml",
+    "hex-pm-utilities-api-openapi.yml"
+  ],
+  "outputs": [
+    "hex-pm-api-keys-api-openapi.yml",
+    "hex-pm-authentication-api-openapi.yml",
+    "hex-pm-documentation-api-openapi.yml",
+    "hex-pm-index-api-openapi.yml",
+    "hex-pm-oauth-api-openapi.yml",
+    "hex-pm-organizations-api-openapi.yml",
+    "hex-pm-package-owners-api-openapi.yml",
+    "hex-pm-packages-api-openapi.yml",
+    "hex-pm-releases-api-openapi.yml",
+    "hex-pm-repositories-api-openapi.yml",
+    "hex-pm-users-api-openapi.yml",
+    "hex-pm-utilities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
