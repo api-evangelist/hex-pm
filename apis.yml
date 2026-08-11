@@ -309,6 +309,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/hexpm/hexpm/issues
+  - type: CodeOfConduct
+    url: https://github.com/hexpm/.github/blob/main/CODE_OF_CONDUCT.md
   - type: AgenticAccess
     url: agentic-access/hex-pm-agentic-access.yml
   - type: DomainSecurity
