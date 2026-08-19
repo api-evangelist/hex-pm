@@ -3,6 +3,7 @@ description: Package registry for the Erlang and Elixir ecosystems with a REST A
   for searching packages, accessing metadata, managing releases, user authentication,
   and organization management. Supports public and private packages with HexDocs
   integration.
+specificationVersion: '0.23'
 accessModel:
   pricing: freemium
   onboarding: self-serve
