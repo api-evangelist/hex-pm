@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hex.pm API Keys Documentation API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documentation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Package Documentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/packages/:name/releases/:version/docs",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release version (e.g. 1.0.0)."
+              }
+            ]
+          },
+          "docs": "Returns documentation for a specific release."
+        },
+        {
+          "info": {
+            "name": "Publish Package Documentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/packages/:name/releases/:version/docs",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release version (e.g. 1.0.0)."
+              }
+            ]
+          },
+          "docs": "Publishes documentation for a release. Body must be a gzipped tarball."
+        },
+        {
+          "info": {
+            "name": "Remove Package Documentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hex.pm/api/packages/:name/releases/:version/docs",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release version (e.g. 1.0.0)."
+              }
+            ]
+          },
+          "docs": "Removes documentation for a specific release."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

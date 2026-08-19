@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "1670367c-3f53-4176-89a3-b4c68fb7c37d",
+      "name": "Repositories",
+      "description": {
+        "content": "Hex repository management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a5ffdc7-f897-495e-be86-fff822c492ed",
+          "name": "List all Repositories",
+          "request": {
+            "name": "List all Repositories",
+            "description": {
+              "content": "Returns a list of all available Hex repositories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Starts at 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adc379b1-1aa3-4b42-bdd0-13ea9407c382",
+              "name": "List of repositories.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"public_key\": \"string\",\n    \"url\": \"https://nXsWMogr.nrmCbU.gqsJGmxIAfyEvNgX-eP,PBFxChR5TNw89iC6uhzuPTWkKNw1SNP.ZRZpiJ8DwizvP\",\n    \"inserted_at\": \"1995-03-26T22:09:42.852Z\",\n    \"updated_at\": \"1997-01-12T22:28:45.664Z\"\n  },\n  {\n    \"name\": \"string\",\n    \"public_key\": \"string\",\n    \"url\": \"http://nuRnidrSoyFNpMSvZRDtOpBIvZiLKosfE.khobiCxLLDtq96qdjK.DqyROdPHVlyYCMb0UUvcG5t.\",\n    \"inserted_at\": \"2002-04-08T11:39:51.919Z\",\n    \"updated_at\": \"1999-06-04T03:10:39.122Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "392d8939-9726-45df-afc5-7cd14c992ce7",
+          "name": "Fetch a Repository",
+          "request": {
+            "name": "Fetch a Repository",
+            "description": {
+              "content": "Returns information about a specific repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repos",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Organization name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c28c424-c362-43a1-81ab-9a0264fa12e0",
+              "name": "Repository details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Organization name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"public_key\": \"string\",\n  \"url\": \"https://CRkfeZsbzWsbnCxoHbmHqEFWKvcmBZAxK.cczdev-TNPUUIIwxszltZpEV\",\n  \"inserted_at\": \"1954-04-15T16:09:07.908Z\",\n  \"updated_at\": \"1996-02-02T03:25:21.638Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e976d2a7-94f2-4a33-85af-297218c8c455",
+              "name": "Repository not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Organization name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6981,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hex.pm/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2fbf80f2-a7b0-431f-a95f-3a1bf3e34bd6",
+    "name": "Hex.pm API Keys Repositories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.\n\nContact Support:\n Name: Hex Support\n Email: support@hex.pm",
+      "type": "text/plain"
+    }
+  }
+}

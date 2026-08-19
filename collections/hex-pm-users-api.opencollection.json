@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hex.pm API Keys Users API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new user account."
+        },
+        {
+          "info": {
+            "name": "Fetch a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/users/:username_or_email",
+            "params": [
+              {
+                "name": "username_or_email",
+                "value": "",
+                "type": "path",
+                "description": "Username or email address of the user."
+              }
+            ]
+          },
+          "docs": "Returns information about a specific user."
+        },
+        {
+          "info": {
+            "name": "Fetch currently authenticated user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/users/me"
+          },
+          "docs": "Returns information about the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "Fetch User Audit Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/users/me/audit-logs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Starts at 1."
+              }
+            ]
+          },
+          "docs": "Returns audit logs for the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "Reset User password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/users/:username_or_email/reset",
+            "params": [
+              {
+                "name": "username_or_email",
+                "value": "",
+                "type": "path",
+                "description": "Username or email address of the user."
+              }
+            ]
+          },
+          "docs": "Sends a password reset email to the user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

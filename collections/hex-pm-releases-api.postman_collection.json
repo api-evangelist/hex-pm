@@ -1,0 +1,1010 @@
+{
+  "item": [
+    {
+      "id": "59f402c3-f249-4f2b-95d4-f7970817234c",
+      "name": "Releases",
+      "description": {
+        "content": "Package release publishing and management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de8d4cd0-b3c0-4d1b-8ea5-d7725c3473a6",
+          "name": "Fetch a Release",
+          "request": {
+            "name": "Fetch a Release",
+            "description": {
+              "content": "Returns detailed information about a specific release of a package.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":name",
+                "releases",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Package name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release version (e.g. 1.0.0)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c3ccfd2-b474-4342-9052-5ffda7b238dc",
+              "name": "Release details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"checksum\": \"string\",\n  \"has_docs\": false,\n  \"url\": \"http://LFNctoYXugGdoxNFQCaKDaDd.hzWLXluB.L\",\n  \"package_url\": \"https://bsvaKQUfDzmJMJeDKlceyx.qjyPhRZgrj6yrX5D8BGFKw68oT.zmv+ZAXwY,\",\n  \"docs_html_url\": \"http://XhFmZnDKhTMEBediGcNzKISSL.obbq8FBaFhcR2zhGbvHxi0.hVSDN1aTeRjveteh2G5L\",\n  \"html_url\": \"https://laZfzeNhsjhS.slodHzNy0\",\n  \"downloads\": 1046,\n  \"meta\": {\n    \"app\": \"string\",\n    \"build_tools\": [\n      \"string\",\n      \"string\"\n    ],\n    \"elixir\": \"string\"\n  },\n  \"retirement\": {\n    \"reason\": \"deprecated\",\n    \"message\": \"string\"\n  },\n  \"requirements\": {\n    \"key_0\": {\n      \"requirement\": \"string\",\n      \"optional\": true,\n      \"app\": \"string\",\n      \"repository\": \"string\"\n    },\n    \"key_1\": {\n      \"requirement\": \"string\",\n      \"optional\": true,\n      \"app\": \"string\",\n      \"repository\": \"string\"\n    }\n  },\n  \"inserted_at\": \"1979-09-20T06:39:40.245Z\",\n  \"updated_at\": \"1953-02-25T03:34:35.313Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72b73622-2537-40c8-9cdf-7ec17fb988a8",
+              "name": "Release not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8763,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce414abc-aaba-4865-8691-2115baf28893",
+          "name": "Revert a Release",
+          "request": {
+            "name": "Revert a Release",
+            "description": {
+              "content": "Removes a release. Only possible within one hour of publishing and if no other packages depend on it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":name",
+                "releases",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Package name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release version (e.g. 1.0.0)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "765214b6-0760-4116-b13e-5cbca5a52f20",
+              "name": "Release reverted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26332cc7-33f2-498b-8655-a076fe7d2bc3",
+              "name": "Not authorized or time window expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8763,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54d25167-3a66-443f-ac39-e042eae6a147",
+              "name": "Release not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8763,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "314c36d1-d5f5-4a5f-8437-3f10c654f791",
+          "name": "Publish a Release",
+          "request": {
+            "name": "Publish a Release",
+            "description": {
+              "content": "Publishes a new release for a package. The body must be a valid Hex package tarball.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "file"
+            }
+          },
+          "response": [
+            {
+              "id": "4dbb8b88-9dab-4911-a6a9-cfac1ee33949",
+              "name": "Release published.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"checksum\": \"string\",\n  \"has_docs\": true,\n  \"url\": \"https://GKkrUoEjPNeEUnSLwbPYxDrm.jpGmgjBDV1xs\",\n  \"package_url\": \"https://QLTKrOZihDZTEUOdftkrLUVQTaSQ.bwrmqT9t4M5fNDjG,essNWnt7ktGi,Aawsae1LBIxVrj1JugLrfzi,9RDfNGsYPoHOMF119Gh\",\n  \"docs_html_url\": \"http://imLyWGgCiQiGIwYi.vtwI9cTtWxVhWTOwlq5kjSl9An4yl5TraB\",\n  \"html_url\": \"https://uDmAVwlHuweFxpufM.gmo,QWkcUhvpHuktUq6dMobJOvFW8LGTdZvONI9G2lD3\",\n  \"downloads\": 9292,\n  \"meta\": {\n    \"app\": \"string\",\n    \"build_tools\": [\n      \"string\",\n      \"string\"\n    ],\n    \"elixir\": \"string\"\n  },\n  \"retirement\": {\n    \"reason\": \"renamed\",\n    \"message\": \"string\"\n  },\n  \"requirements\": {\n    \"key_0\": {\n      \"requirement\": \"string\",\n      \"optional\": false,\n      \"app\": \"string\",\n      \"repository\": \"string\"\n    }\n  },\n  \"inserted_at\": \"1970-09-24T13:32:39.351Z\",\n  \"updated_at\": \"2013-09-04T10:00:15.194Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "468d57cb-4d10-4b4a-921a-671cf48c7ea7",
+              "name": "Invalid tarball.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8763,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0a33a7e-e446-49d9-9a52-b107288e5418",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8763,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1460331-94e5-4bb6-af65-17399cd165e4",
+          "name": "Mark Release as Retired",
+          "request": {
+            "name": "Mark Release as Retired",
+            "description": {
+              "content": "Marks a release as retired with a reason and optional message.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":name",
+                "releases",
+                ":version",
+                "retire"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Package name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release version (e.g. 1.0.0)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8bdc1e9-2d90-4736-a507-09aadd1c47f7",
+              "name": "Release marked as retired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version",
+                    "retire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b8837ec1-cbc1-44df-aebd-af2478e0fd1e",
+              "name": "Release not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version",
+                    "retire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8763,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "409baf2a-36a0-415b-b369-2f0150895908",
+          "name": "Unmark Release as Retired",
+          "request": {
+            "name": "Unmark Release as Retired",
+            "description": {
+              "content": "Removes the retired status from a release.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":name",
+                "releases",
+                ":version",
+                "retire"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Package name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release version (e.g. 1.0.0)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7557b25c-fd66-4681-88bd-c000d63f3043",
+              "name": "Release retirement removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version",
+                    "retire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aaa3caf8-097d-45d1-a978-08b2b60a388c",
+              "name": "Release not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "releases",
+                    ":version",
+                    "retire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release version (e.g. 1.0.0)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8763,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hex.pm/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9bb3b71d-4810-4bd6-8a68-4ac607fe44e6",
+    "name": "Hex.pm API Keys Releases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.\n\nContact Support:\n Name: Hex Support\n Email: support@hex.pm",
+      "type": "text/plain"
+    }
+  }
+}

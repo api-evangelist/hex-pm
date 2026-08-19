@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hex.pm API Keys API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all API Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/keys"
+          },
+          "docs": "Returns all API keys for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create an API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API key. The secret is only returned on creation."
+        },
+        {
+          "info": {
+            "name": "Remove all API Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hex.pm/api/keys",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Removes all API keys for the authenticated user. Requires Basic authentication."
+        },
+        {
+          "info": {
+            "name": "Fetch an API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/keys/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the API key."
+              }
+            ]
+          },
+          "docs": "Returns information about a specific API key."
+        },
+        {
+          "info": {
+            "name": "Remove an API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hex.pm/api/keys/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the API key."
+              }
+            ]
+          },
+          "docs": "Removes a specific API key."
+        },
+        {
+          "info": {
+            "name": "List Organization API Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/orgs/:name/keys",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              }
+            ]
+          },
+          "docs": "Returns all API keys for an organization."
+        },
+        {
+          "info": {
+            "name": "Create Organization API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/orgs/:name/keys",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API key for an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

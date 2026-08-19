@@ -1,0 +1,435 @@
+{
+  "item": [
+    {
+      "id": "3d80b11e-d4a7-4f7b-a635-5dac1a4de67d",
+      "name": "Packages",
+      "description": {
+        "content": "Package search and metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2304ea0a-3ab5-4d1b-9b1c-d2d350fc35f0",
+          "name": "List all Packages",
+          "request": {
+            "name": "List all Packages",
+            "description": {
+              "content": "Returns a paginated list of packages. Supports search and sorting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort order. Options: name, downloads, inserted_at, updated_at, recent_downloads."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search string. Supports field search: name:nerves*, description:framework, extra:type,nerves."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Starts at 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d414c234-948c-4ad3-a41a-3cb590356cf3",
+              "name": "List of packages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests permitted per minute.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "3606"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining number of requests allowed until reset.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3606"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the rate limit window resets in UNIX epoch.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "3606"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"html_url\": \"https://kZfqlhxCscUUAQSCxvbrxkANx.zePyEjYNWm1jDI,qjAQMTMSTqCAWJsb0Y+FJfrNIGutyRJb3\",\n    \"docs_html_url\": \"https://wnlfNqRuIXyYQwcIPimAskpRPBfrfuJXV.qclrAwbAZfX4b\",\n    \"meta\": {\n      \"description\": \"string\",\n      \"licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"key_0\": \"string\"\n      },\n      \"maintainers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"releases\": [\n      {\n        \"version\": \"string\",\n        \"url\": \"https://cAjNEAkBThhCegoiWRiVClVXsVjM.oetlTlU0fovvOouToqniCXuMOxBlr34UNKXJpM\",\n        \"inserted_at\": \"2021-02-11T07:08:44.557Z\"\n      },\n      {\n        \"version\": \"string\",\n        \"url\": \"http://ilYdElokkWzbMvZWPmdIbQWHGsSc.qjkvExH0B1QTOXSh8eYBPpf,vHevXO0riSA7LGVzSNM2uF.QG1.H\",\n        \"inserted_at\": \"1996-08-06T06:38:27.134Z\"\n      }\n    ],\n    \"owners\": [\n      {\n        \"username\": \"string\",\n        \"email\": \"2iUoQWi@oaXxFoOltXBvRBrufRpcARGtoAqXXlQ.oyv\",\n        \"url\": \"http://gmiZEKwEQwLEwTxF.egcoupNCkRRobXWV,tXTxXFSKWXhQyJ\"\n      },\n      {\n        \"username\": \"string\",\n        \"email\": \"EetE8lvfrLy@P.qact\",\n        \"url\": \"http://curKiaShlHynSXMICOREPeDtpT.kurxuO9gYCPym6iJRaT\"\n      }\n    ],\n    \"inserted_at\": \"1971-06-28T09:52:38.021Z\",\n    \"updated_at\": \"1951-02-26T22:48:55.933Z\",\n    \"url\": \"https://DqzGJcuuWggcabrILahwkrtG.rffz+J7+wYSHuud+vTqrwQ597ZpBSGl\",\n    \"downloads\": {\n      \"all\": 8046,\n      \"recent\": 7498\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"html_url\": \"https://ZJcWJowmnwVRyiydzlUfl.mrqzwKA9u,XdJnwy.UCrwGM+\",\n    \"docs_html_url\": \"http://HG.strDTXDeQyn+pevczPUWI5ioiHmCEvZwSjQodPMPnZ6\",\n    \"meta\": {\n      \"description\": \"string\",\n      \"licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": {\n        \"key_0\": \"string\"\n      },\n      \"maintainers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"releases\": [\n      {\n        \"version\": \"string\",\n        \"url\": \"http://Alxv.hjwHB6a-wGMC-t85z6dj0trmaZh4iFKe.,aXDWI0afzmN\",\n        \"inserted_at\": \"1970-07-18T19:35:00.672Z\"\n      },\n      {\n        \"version\": \"string\",\n        \"url\": \"https://oSNGeRVqwL.vrIgaTTsuRSHpgASrYQmcQqk6VAokLwV6BjOYzgNjE8k30nfgXT6+hlSbU9EBFJEwwWmgyCV\",\n        \"inserted_at\": \"2024-12-29T23:47:19.575Z\"\n      }\n    ],\n    \"owners\": [\n      {\n        \"username\": \"string\",\n        \"email\": \"ihEnf@ARNWFTlLjLPgXReIFEfkvYP.ktf\",\n        \"url\": \"http://srm.ybaOhXC.PdalOM1Vlg+YGWnUKucNTV\"\n      },\n      {\n        \"username\": \"string\",\n        \"email\": \"iRfUwcpCZyPNR@UcHQGQmPlXDQlIYnmIWwdxAmkmjxVgLML.xx\",\n        \"url\": \"http://kHfvcrXhoUIPPXxRoKQeuOYOOTcYDVRnM.tldkZIWOSuaGg2\"\n      }\n    ],\n    \"inserted_at\": \"1962-03-17T12:39:05.000Z\",\n    \"updated_at\": \"2021-07-19T03:47:41.945Z\",\n    \"url\": \"http://ExLykIjTlQwlffQ.zzkiMzy7F+C-N2T-x2UYHWaatVTWUx8wdrYkiAxy1.HTJ\",\n    \"downloads\": {\n      \"all\": 8776,\n      \"recent\": 9338\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d2f6c0c-5ff2-4e75-95f5-4c149dd29115",
+          "name": "Fetch a Package",
+          "request": {
+            "name": "Fetch a Package",
+            "description": {
+              "content": "Returns information about a specific package including all releases and owners.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Package name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "138331cd-0ca2-4a75-b53d-601e46c97b55",
+              "name": "Package details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"html_url\": \"https://LvSyvrrudINHABSCVl.buLfAOacQwegs,EpinX7,kIsfMqUzOOoAj,-9uxuhj0fKshhW-\",\n  \"docs_html_url\": \"http://fTYHwEify.wyKjdO\",\n  \"meta\": {\n    \"description\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"links\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"maintainers\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"releases\": [\n    {\n      \"version\": \"string\",\n      \"url\": \"http://xuGiiIY.gumcw,\",\n      \"inserted_at\": \"1964-09-24T14:56:17.167Z\"\n    },\n    {\n      \"version\": \"string\",\n      \"url\": \"https://uoBAgaQrcKPttUdoXSGaghwh.nfoU-UCmNCJfV79nWnvxxrcSFtZDR8+GzWAijOg\",\n      \"inserted_at\": \"2009-06-03T19:34:46.827Z\"\n    }\n  ],\n  \"owners\": [\n    {\n      \"username\": \"string\",\n      \"email\": \"VN3YJ@CBzAWZEMbjGBGHQNcv.dkjc\",\n      \"url\": \"https://jrYqLAHjKHAIjbZCtkbvLTYNX.slWaHs5Py+kw\"\n    },\n    {\n      \"username\": \"string\",\n      \"email\": \"TIpf@pEfZVkmGOitmhzqSImALFEYzliOGaE.qfr\",\n      \"url\": \"https://wVlsNoOoGTZqExLUeMGJBUsJXKzcpei.eaP+zSqtXp\"\n    }\n  ],\n  \"inserted_at\": \"1974-08-07T22:22:59.965Z\",\n  \"updated_at\": \"1993-04-23T12:52:04.220Z\",\n  \"url\": \"http://BKkzIjXdxGX.ljqqjmTJn04z-z0ppghptREd2hae9yhxF8zDn8I+,5\",\n  \"downloads\": {\n    \"all\": 1670,\n    \"recent\": 3186\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aca0f273-b611-4347-87be-bc73fce0f414",
+              "name": "Package not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5779,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "237fa884-d7ca-43a5-83cf-95a8a10bca18",
+          "name": "Fetch Package Audit Logs",
+          "request": {
+            "name": "Fetch Package Audit Logs",
+            "description": {
+              "content": "Returns audit logs for a specific package.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":name",
+                "audit-logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Starts at 1."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Package name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0334a9a6-878f-416c-9db0-83557a6bcfb5",
+              "name": "List of audit log entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":name",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Package name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"action\": \"string\",\n    \"actor\": \"string\",\n    \"params\": {},\n    \"inserted_at\": \"2019-06-16T01:31:40.924Z\"\n  },\n  {\n    \"action\": \"string\",\n    \"actor\": \"string\",\n    \"params\": {},\n    \"inserted_at\": \"2022-05-13T12:16:40.849Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hex.pm/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "13cdb2c2-0afc-432c-8e60-dcd55cfc8031",
+    "name": "Hex.pm API Keys Packages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.\n\nContact Support:\n Name: Hex Support\n Email: support@hex.pm",
+      "type": "text/plain"
+    }
+  }
+}

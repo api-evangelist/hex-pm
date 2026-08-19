@@ -1,0 +1,931 @@
+{
+  "item": [
+    {
+      "id": "ffc4c4e2-fda4-4fd7-b0b4-427158c711e1",
+      "name": "API Keys",
+      "description": {
+        "content": "API key creation and management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0342e185-f0fc-4a8e-991a-3ca8daa6a6c7",
+          "name": "List all API Keys",
+          "request": {
+            "name": "List all API Keys",
+            "description": {
+              "content": "Returns all API keys for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db95192d-9902-4d84-a983-93a2f8651daf",
+              "name": "List of API keys.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"permissions\": [\n      {\n        \"domain\": \"string\",\n        \"resource\": \"string\"\n      },\n      {\n        \"domain\": \"string\",\n        \"resource\": \"string\"\n      }\n    ],\n    \"authing_key\": false,\n    \"secret\": \"string\",\n    \"inserted_at\": \"2025-07-27T12:04:09.736Z\",\n    \"updated_at\": \"2005-03-17T18:52:51.150Z\",\n    \"url\": \"http://oppqkoPIqNoS.hcvybB2pbX80UbNYPK4gTIyRiCkXduMhH3BlErQyvTk\"\n  },\n  {\n    \"name\": \"string\",\n    \"permissions\": [\n      {\n        \"domain\": \"string\",\n        \"resource\": \"string\"\n      },\n      {\n        \"domain\": \"string\",\n        \"resource\": \"string\"\n      }\n    ],\n    \"authing_key\": true,\n    \"secret\": \"string\",\n    \"inserted_at\": \"1962-10-26T05:24:34.837Z\",\n    \"updated_at\": \"1973-11-17T13:34:37.611Z\",\n    \"url\": \"https://YxMwRPEp.xstPc-XIK3BwTRFx99IrKEAgPFpHeiPV.HQe-4\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0852b21f-cc01-416f-bb75-614c76dcfa87",
+          "name": "Create an API Key",
+          "request": {
+            "name": "Create an API Key",
+            "description": {
+              "content": "Creates a new API key. The secret is only returned on creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "222e9311-5cf1-4daf-88c5-0ba83019a6d1",
+              "name": "API key created. The secret field is only returned here.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"permissions\": [\n    {\n      \"domain\": \"string\",\n      \"resource\": \"string\"\n    },\n    {\n      \"domain\": \"string\",\n      \"resource\": \"string\"\n    }\n  ],\n  \"authing_key\": true,\n  \"secret\": \"string\",\n  \"inserted_at\": \"2007-02-04T11:33:17.077Z\",\n  \"updated_at\": \"2021-12-14T16:01:59.659Z\",\n  \"url\": \"https://AIBXEeVwrovylOfhIWB.odatDrYVXM5PKYMPVrr\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13d5e6d0-d115-418a-beec-2d001fdee5ef",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5577,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6037229-5a82-4521-9c43-f31bc269b661",
+          "name": "Remove all API Keys",
+          "request": {
+            "name": "Remove all API Keys",
+            "description": {
+              "content": "Removes all API keys for the authenticated user. Requires Basic authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "349400eb-d60d-4ac8-8665-d030a6c83bd2",
+              "name": "All API keys removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3cb69c4-bfc0-4e93-815e-af5a63f197dc",
+          "name": "Fetch an API Key",
+          "request": {
+            "name": "Fetch an API Key",
+            "description": {
+              "content": "Returns information about a specific API key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keys",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the API key."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4aae90f-1bdc-4268-be75-6d9efa0c36c6",
+              "name": "API key details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"permissions\": [\n    {\n      \"domain\": \"string\",\n      \"resource\": \"string\"\n    },\n    {\n      \"domain\": \"string\",\n      \"resource\": \"string\"\n    }\n  ],\n  \"authing_key\": true,\n  \"secret\": \"string\",\n  \"inserted_at\": \"2007-02-04T11:33:17.077Z\",\n  \"updated_at\": \"2021-12-14T16:01:59.659Z\",\n  \"url\": \"https://AIBXEeVwrovylOfhIWB.odatDrYVXM5PKYMPVrr\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3250a178-2ee6-4a90-8c7a-94a6ac7af19b",
+              "name": "Key not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5577,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df9d0dc0-891f-48ab-a89d-fe748fd792d3",
+          "name": "Remove an API Key",
+          "request": {
+            "name": "Remove an API Key",
+            "description": {
+              "content": "Removes a specific API key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keys",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the API key."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "777a991d-36c1-4a23-a83f-9bb9dc5da519",
+              "name": "API key removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"permissions\": [\n    {\n      \"domain\": \"string\",\n      \"resource\": \"string\"\n    },\n    {\n      \"domain\": \"string\",\n      \"resource\": \"string\"\n    }\n  ],\n  \"authing_key\": true,\n  \"secret\": \"string\",\n  \"inserted_at\": \"2007-02-04T11:33:17.077Z\",\n  \"updated_at\": \"2021-12-14T16:01:59.659Z\",\n  \"url\": \"https://AIBXEeVwrovylOfhIWB.odatDrYVXM5PKYMPVrr\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d335f86-f445-4dd3-80a9-582ef436ea3d",
+              "name": "Key not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keys",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5577,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81985246-b1f1-4d55-a8d1-e3b7a16ee9bf",
+          "name": "List Organization API Keys",
+          "request": {
+            "name": "List Organization API Keys",
+            "description": {
+              "content": "Returns all API keys for an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":name",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Organization name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fc339ba-7eef-46cb-aa95-350300e5a112",
+              "name": "List of organization API keys.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":name",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Organization name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"permissions\": [\n      {\n        \"domain\": \"string\",\n        \"resource\": \"string\"\n      },\n      {\n        \"domain\": \"string\",\n        \"resource\": \"string\"\n      }\n    ],\n    \"authing_key\": false,\n    \"secret\": \"string\",\n    \"inserted_at\": \"1983-12-16T00:57:03.475Z\",\n    \"updated_at\": \"1953-07-10T11:30:04.763Z\",\n    \"url\": \"http://vKqASWXPOUYOWPgkasUBzAoGTzREBEH.dyzO4k096uFYonS,g6UcaHt+dXVjzxSZryqDRX+V\"\n  },\n  {\n    \"name\": \"string\",\n    \"permissions\": [\n      {\n        \"domain\": \"string\",\n        \"resource\": \"string\"\n      },\n      {\n        \"domain\": \"string\",\n        \"resource\": \"string\"\n      }\n    ],\n    \"authing_key\": false,\n    \"secret\": \"string\",\n    \"inserted_at\": \"1984-11-15T00:11:30.741Z\",\n    \"updated_at\": \"2002-11-09T01:59:39.013Z\",\n    \"url\": \"https://TkSkLvykqpbQznUo.xnuev+KHI.KuYFIUvQoR.\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2ee9fe5-158a-4381-9eb7-894be50aeac9",
+          "name": "Create Organization API Key",
+          "request": {
+            "name": "Create Organization API Key",
+            "description": {
+              "content": "Creates a new API key for an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":name",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Organization name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99a0cd76-1165-4103-b5ab-b91fce7d6594",
+              "name": "Organization API key created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":name",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Organization name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"permissions\": [\n    {\n      \"domain\": \"string\",\n      \"resource\": \"string\"\n    },\n    {\n      \"domain\": \"string\",\n      \"resource\": \"string\"\n    }\n  ],\n  \"authing_key\": true,\n  \"secret\": \"string\",\n  \"inserted_at\": \"2007-02-04T11:33:17.077Z\",\n  \"updated_at\": \"2021-12-14T16:01:59.659Z\",\n  \"url\": \"https://AIBXEeVwrovylOfhIWB.odatDrYVXM5PKYMPVrr\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb2f6fd6-7fb0-4f78-99cb-8ab3204dda04",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":name",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Organization name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"resource\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5577,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hex.pm/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "48c32c9c-7d42-40b5-92a4-b857dc86bdf5",
+    "name": "Hex.pm API Keys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.\n\nContact Support:\n Name: Hex Support\n Email: support@hex.pm",
+      "type": "text/plain"
+    }
+  }
+}

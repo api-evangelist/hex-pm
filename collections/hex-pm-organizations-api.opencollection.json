@@ -1,0 +1,281 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hex.pm API Keys Organizations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/orgs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Starts at 1."
+              }
+            ]
+          },
+          "docs": "Returns a list of all organizations the authenticated user is a member of."
+        },
+        {
+          "info": {
+            "name": "Fetch an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/orgs/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              }
+            ]
+          },
+          "docs": "Returns information about a specific organization."
+        },
+        {
+          "info": {
+            "name": "Update an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/orgs/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates organization settings such as billing email."
+        },
+        {
+          "info": {
+            "name": "Fetch Organization Audit Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/orgs/:name/audit-logs",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Starts at 1."
+              }
+            ]
+          },
+          "docs": "Returns audit logs for a specific organization."
+        },
+        {
+          "info": {
+            "name": "List Organization Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/orgs/:name/members",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Starts at 1."
+              }
+            ]
+          },
+          "docs": "Returns all members of an organization."
+        },
+        {
+          "info": {
+            "name": "Add Organization Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/orgs/:name/members",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a user to an organization."
+        },
+        {
+          "info": {
+            "name": "Get Organization Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/orgs/:name/members/:username",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username."
+              }
+            ]
+          },
+          "docs": "Returns information about a specific organization member."
+        },
+        {
+          "info": {
+            "name": "Update Organization Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/orgs/:name/members/:username",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the role of an organization member."
+        },
+        {
+          "info": {
+            "name": "Remove Organization Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hex.pm/api/orgs/:name/members/:username",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username."
+              }
+            ]
+          },
+          "docs": "Removes a user from an organization."
+        },
+        {
+          "info": {
+            "name": "List Organization API Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/orgs/:name/keys",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              }
+            ]
+          },
+          "docs": "Returns all API keys for an organization."
+        },
+        {
+          "info": {
+            "name": "Create Organization API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/orgs/:name/keys",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Organization name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API key for an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

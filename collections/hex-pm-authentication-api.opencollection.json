@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hex.pm API Keys Authentication API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify Authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/auth"
+          },
+          "docs": "Verifies that the current authentication credentials are valid."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

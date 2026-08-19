@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hex.pm API Keys Package Owners API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Package Owners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Package Owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/packages/:name/owners",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              }
+            ]
+          },
+          "docs": "Returns all owners of a package."
+        },
+        {
+          "info": {
+            "name": "Fetch a Package Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/packages/:name/owners/:username",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username."
+              }
+            ]
+          },
+          "docs": "Returns information about a specific owner of a package."
+        },
+        {
+          "info": {
+            "name": "Add a Package Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://hex.pm/api/packages/:name/owners/:username",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username."
+              }
+            ]
+          },
+          "docs": "Adds a user as an owner of a package."
+        },
+        {
+          "info": {
+            "name": "Remove a Package Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hex.pm/api/packages/:name/owners/:username",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username."
+              }
+            ]
+          },
+          "docs": "Removes a user as an owner of a package."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

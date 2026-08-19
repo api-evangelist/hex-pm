@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hex.pm API Keys Packages API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/packages",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order. Options: name, downloads, inserted_at, updated_at, recent_downloads."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search string. Supports field search: name:nerves*, description:framework, extra:type,nerves."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Starts at 1."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of packages. Supports search and sorting."
+        },
+        {
+          "info": {
+            "name": "Fetch a Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/packages/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              }
+            ]
+          },
+          "docs": "Returns information about a specific package including all releases and owners."
+        },
+        {
+          "info": {
+            "name": "Fetch Package Audit Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/packages/:name/audit-logs",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Starts at 1."
+              }
+            ]
+          },
+          "docs": "Returns audit logs for a specific package."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

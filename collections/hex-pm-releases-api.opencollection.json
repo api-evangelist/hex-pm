@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hex.pm API Keys Releases API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Releases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a Release",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hex.pm/api/packages/:name/releases/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release version (e.g. 1.0.0)."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific release of a package."
+        },
+        {
+          "info": {
+            "name": "Revert a Release",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hex.pm/api/packages/:name/releases/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release version (e.g. 1.0.0)."
+              }
+            ]
+          },
+          "docs": "Removes a release. Only possible within one hour of publishing and if no other packages depend on it."
+        },
+        {
+          "info": {
+            "name": "Publish a Release",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/publish"
+          },
+          "docs": "Publishes a new release for a package. The body must be a valid Hex package tarball."
+        },
+        {
+          "info": {
+            "name": "Mark Release as Retired",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hex.pm/api/packages/:name/releases/:version/retire",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release version (e.g. 1.0.0)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks a release as retired with a reason and optional message."
+        },
+        {
+          "info": {
+            "name": "Unmark Release as Retired",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://hex.pm/api/packages/:name/releases/:version/retire",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Package name."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release version (e.g. 1.0.0)."
+              }
+            ]
+          },
+          "docs": "Removes the retired status from a release."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
