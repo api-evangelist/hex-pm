@@ -27,6 +27,8 @@ apis:
   humanURL: https://hex.pm/docs
   baseURL: https://hex.pm/api
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -123,6 +125,8 @@ apis:
   humanURL: https://hex.pm/docs
   baseURL: https://hex.pm/api
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
@@ -147,6 +151,8 @@ apis:
   humanURL: https://hex.pm/docs
   baseURL: https://hex.pm/api
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -267,6 +273,8 @@ apis:
   humanURL: https://hex.pm/docs
   baseURL: https://hex.pm/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -350,6 +358,14 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 tags:
+  - Package Registry
+  - Erlang
+  - Elixir
+  - Gleam
+  - BEAM
+  - Open-Source
+  - Package Manager
+tags_raw:
   - Package Registry
   - Erlang
   - Elixir
