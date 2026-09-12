@@ -332,6 +332,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
 common:
+  - type: Website
+    url: https://www.hex.pm/
   - type: IssueTracker
     url: https://github.com/hexpm/hexpm/issues
   - type: CodeOfConduct
