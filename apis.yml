@@ -133,32 +133,6 @@ apis:
   - type: FinOps
     url: >-
       https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
-- aid: hex-pm:hex-pm-oauth-api
-  name: Hex.pm OAuth API
-  description: OAuth2 Device Authorization Grant flow.
-  humanURL: https://hex.pm/docs
-  baseURL: https://hex.pm/api
-  tags:
-  - Authentication
-  tags_raw:
-  - OAuth
-  properties:
-  - type: OpenAPI
-    url: openapi/hex-pm-oauth-api-openapi.yml
-  - type: Documentation
-    url: https://hex.pm/docs
-  - type: ApiaryBlueprint
-    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
-  - type: Specification
-    url: https://github.com/hexpm/specifications
-  - type: Plans
-    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
-  - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
-  - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
 - aid: hex-pm:hex-pm-organizations-api
   name: Hex.pm Organizations API
   description: Organization and member management.
@@ -317,6 +291,30 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hex-pm-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://hex.pm/docs
+  - type: ApiaryBlueprint
+    url: https://github.com/hexpm/specifications/blob/master/apiary.apib
+  - type: Specification
+    url: https://github.com/hexpm/specifications
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
+- aid: hex-pm:hex-pm-oauth-api
+  name: Hex.pm O Auth API
+  description: OAuth2 Device Authorization Grant flow.
+  humanURL: https://hex.pm/docs
+  baseURL: https://hex.pm/api
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/hex-pm-oauth-api-openapi.yml
   - type: Documentation
     url: https://hex.pm/docs
   - type: ApiaryBlueprint
