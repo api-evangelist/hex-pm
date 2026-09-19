@@ -311,6 +311,8 @@ apis:
   humanURL: https://hex.pm/docs
   baseURL: https://hex.pm/api
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
