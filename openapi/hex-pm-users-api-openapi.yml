@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hex.pm API Keys Users API
+  title: Hex.pm Users API
   description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
   version: 1.0.0
   contact:
@@ -129,21 +129,20 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    AuditLog:
+    Error:
       type: object
       properties:
-        action:
+        status:
+          type: integer
+        message:
           type: string
-          description: Action that was performed.
-        actor:
-          type: string
-          description: Actor who performed the action.
-        params:
+        errors:
           type: object
-          description: Additional parameters of the action.
-        inserted_at:
-          type: string
-          format: date-time
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
     User:
       type: object
       properties:
@@ -174,6 +173,21 @@ components:
               type: string
             twitter:
               type: string
+    AuditLog:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Action that was performed.
+        actor:
+          type: string
+          description: Actor who performed the action.
+        params:
+          type: object
+          description: Additional parameters of the action.
+        inserted_at:
+          type: string
+          format: date-time
     UserCreate:
       type: object
       required:
@@ -192,20 +206,6 @@ components:
           type: string
           format: password
           description: Password.
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
   parameters:
     page:
       name: page

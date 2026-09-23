@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hex.pm API Keys Organizations API
+  title: Hex.pm Organizations API
   description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
   version: 1.0.0
   contact:
@@ -273,29 +273,20 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ApiKeyCreate:
+    Error:
       type: object
-      required:
-      - name
-      - permissions
       properties:
-        name:
+        status:
+          type: integer
+        message:
           type: string
-          description: Unique name for the API key.
-        permissions:
-          type: array
-          description: List of permissions for the key.
-          items:
-            type: object
-            required:
-            - domain
-            properties:
-              domain:
-                type: string
-                description: Permission domain (e.g., api, repositories, docs).
-              resource:
-                type: string
-                description: Resource the permission applies to (use * for all).
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
     AuditLog:
       type: object
       properties:
@@ -341,34 +332,29 @@ components:
         url:
           type: string
           format: uri
-    OrganizationMember:
+    ApiKeyCreate:
       type: object
-      properties:
-        username:
-          type: string
-        role:
-          type: string
-          enum:
-          - admin
-          - write
-          - read
-        url:
-          type: string
-          format: uri
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
       required:
-      - status
-      - message
+      - name
+      - permissions
+      properties:
+        name:
+          type: string
+          description: Unique name for the API key.
+        permissions:
+          type: array
+          description: List of permissions for the key.
+          items:
+            type: object
+            required:
+            - domain
+            properties:
+              domain:
+                type: string
+                description: Permission domain (e.g., api, repositories, docs).
+              resource:
+                type: string
+                description: Resource the permission applies to (use * for all).
     Organization:
       type: object
       properties:
@@ -387,6 +373,20 @@ components:
         updated_at:
           type: string
           format: date-time
+        url:
+          type: string
+          format: uri
+    OrganizationMember:
+      type: object
+      properties:
+        username:
+          type: string
+        role:
+          type: string
+          enum:
+          - admin
+          - write
+          - read
         url:
           type: string
           format: uri

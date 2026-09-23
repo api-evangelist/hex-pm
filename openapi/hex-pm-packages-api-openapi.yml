@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hex.pm API Keys Packages API
+  title: Hex.pm Packages API
   description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
   version: 1.0.0
   contact:
@@ -105,7 +105,61 @@ paths:
                 items:
                   $ref: '#/components/schemas/AuditLog'
 components:
+  headers:
+    X-RateLimit-Limit:
+      description: The maximum number of requests permitted per minute.
+      schema:
+        type: integer
+    X-RateLimit-Remaining:
+      description: The remaining number of requests allowed until reset.
+      schema:
+        type: integer
+    X-RateLimit-Reset:
+      description: The time at which the rate limit window resets in UNIX epoch.
+      schema:
+        type: integer
+  parameters:
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
+    page:
+      name: page
+      in: query
+      description: Page number for paginated results. Starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+    Owner:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        url:
+          type: string
+          format: uri
     AuditLog:
       type: object
       properties:
@@ -192,60 +246,6 @@ components:
         inserted_at:
           type: string
           format: date-time
-    Owner:
-      type: object
-      properties:
-        username:
-          type: string
-        email:
-          type: string
-          format: email
-        url:
-          type: string
-          format: uri
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
-  headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests permitted per minute.
-      schema:
-        type: integer
-    X-RateLimit-Reset:
-      description: The time at which the rate limit window resets in UNIX epoch.
-      schema:
-        type: integer
-    X-RateLimit-Remaining:
-      description: The remaining number of requests allowed until reset.
-      schema:
-        type: integer
-  parameters:
-    package_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Package name.
-    page:
-      name: page
-      in: query
-      description: Page number for paginated results. Starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

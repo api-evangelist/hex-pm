@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hex.pm API Keys Package Owners API
+  title: Hex.pm Package Owners API
   description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
   version: 1.0.0
   contact:
@@ -118,17 +118,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Owner:
-      type: object
-      properties:
-        username:
-          type: string
-        email:
-          type: string
-          format: email
-        url:
-          type: string
-          format: uri
     Error:
       type: object
       properties:
@@ -143,14 +132,18 @@ components:
       required:
       - status
       - message
+    Owner:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        url:
+          type: string
+          format: uri
   parameters:
-    username:
-      name: username
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Username.
     package_name:
       name: name
       in: path
@@ -158,6 +151,13 @@ components:
       schema:
         type: string
       description: Package name.
+    username:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Username.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

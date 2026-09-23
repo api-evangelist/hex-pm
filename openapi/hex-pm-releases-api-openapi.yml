@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hex.pm API Keys Releases API
+  title: Hex.pm Releases API
   description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
   version: 1.0.0
   contact:
@@ -185,8 +185,9 @@ components:
             elixir:
               type: string
         retirement:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           properties:
             reason:
               type: string
@@ -218,6 +219,20 @@ components:
         updated_at:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
     RetireRelease:
       type: object
       required:
@@ -235,28 +250,7 @@ components:
         message:
           type: string
           description: Optional message explaining retirement.
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
   parameters:
-    release_version:
-      name: version
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Release version (e.g. 1.0.0).
     package_name:
       name: name
       in: path
@@ -264,6 +258,13 @@ components:
       schema:
         type: string
       description: Package name.
+    release_version:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Release version (e.g. 1.0.0).
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

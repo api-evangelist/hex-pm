@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hex.pm API Keys Documentation API
+  title: Hex.pm Documentation API
   description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
   version: 1.0.0
   contact:
@@ -89,21 +89,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    release_version:
-      name: version
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Release version (e.g. 1.0.0).
-    package_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Package name.
   schemas:
     Error:
       type: object
@@ -119,6 +104,21 @@ components:
       required:
       - status
       - message
+  parameters:
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
+    release_version:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Release version (e.g. 1.0.0).
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

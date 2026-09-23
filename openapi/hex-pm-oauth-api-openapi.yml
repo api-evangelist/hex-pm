@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hex.pm API Keys OAuth API
+  title: Hex.pm O Auth API
   description: REST API for the Hex.pm package registry, providing endpoints to search and retrieve package metadata, manage releases, handle authentication, manage API keys, and administer organizations and package ownership. The API supports JSON and Erlang media types.
   version: 1.0.0
   contact:
@@ -125,6 +125,23 @@ paths:
           description: Token revoked.
 components:
   schemas:
+    DeviceAuthorizationResponse:
+      type: object
+      properties:
+        device_code:
+          type: string
+        user_code:
+          type: string
+        verification_uri:
+          type: string
+          format: uri
+        verification_uri_complete:
+          type: string
+          format: uri
+        expires_in:
+          type: integer
+        interval:
+          type: integer
     TokenResponse:
       type: object
       properties:
@@ -152,37 +169,6 @@ components:
           type: string
         device_code:
           type: string
-    DeviceAuthorizationResponse:
-      type: object
-      properties:
-        device_code:
-          type: string
-        user_code:
-          type: string
-        verification_uri:
-          type: string
-          format: uri
-        verification_uri_complete:
-          type: string
-          format: uri
-        expires_in:
-          type: integer
-        interval:
-          type: integer
-    DeviceAuthorizationRequest:
-      type: object
-      required:
-      - client_id
-      properties:
-        client_id:
-          type: string
-        scope:
-          type: string
-        offline_access:
-          type: boolean
-        name:
-          type: string
-          description: Name of the client to display.
     Error:
       type: object
       properties:
@@ -197,6 +183,20 @@ components:
       required:
       - status
       - message
+    DeviceAuthorizationRequest:
+      type: object
+      required:
+      - client_id
+      properties:
+        client_id:
+          type: string
+        scope:
+          type: string
+        offline_access:
+          type: boolean
+        name:
+          type: string
+          description: Name of the client to display.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
