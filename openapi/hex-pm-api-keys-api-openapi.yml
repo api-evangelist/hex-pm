@@ -161,21 +161,45 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    key_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Name of the API key.
+    org_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization name.
   schemas:
-    Error:
+    ApiKeyCreate:
       type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
       required:
-      - status
-      - message
+      - name
+      - permissions
+      properties:
+        name:
+          type: string
+          description: Unique name for the API key.
+        permissions:
+          type: array
+          description: List of permissions for the key.
+          items:
+            type: object
+            required:
+            - domain
+            properties:
+              domain:
+                type: string
+                description: Permission domain (e.g., api, repositories, docs).
+              resource:
+                type: string
+                description: Resource the permission applies to (use * for all).
     ApiKey:
       type: object
       properties:
@@ -206,44 +230,20 @@ components:
         url:
           type: string
           format: uri
-    ApiKeyCreate:
+    Error:
       type: object
-      required:
-      - name
-      - permissions
       properties:
-        name:
+        status:
+          type: integer
+        message:
           type: string
-          description: Unique name for the API key.
-        permissions:
-          type: array
-          description: List of permissions for the key.
-          items:
-            type: object
-            required:
-            - domain
-            properties:
-              domain:
-                type: string
-                description: Permission domain (e.g., api, repositories, docs).
-              resource:
-                type: string
-                description: Resource the permission applies to (use * for all).
-  parameters:
-    org_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization name.
-    key_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Name of the API key.
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

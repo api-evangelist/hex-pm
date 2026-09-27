@@ -106,49 +106,19 @@ paths:
                   $ref: '#/components/schemas/AuditLog'
 components:
   headers:
-    X-RateLimit-Limit:
-      description: The maximum number of requests permitted per minute.
+    X-RateLimit-Reset:
+      description: The time at which the rate limit window resets in UNIX epoch.
       schema:
         type: integer
     X-RateLimit-Remaining:
       description: The remaining number of requests allowed until reset.
       schema:
         type: integer
-    X-RateLimit-Reset:
-      description: The time at which the rate limit window resets in UNIX epoch.
+    X-RateLimit-Limit:
+      description: The maximum number of requests permitted per minute.
       schema:
         type: integer
-  parameters:
-    package_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Package name.
-    page:
-      name: page
-      in: query
-      description: Page number for paginated results. Starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   schemas:
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
     Owner:
       type: object
       properties:
@@ -160,21 +130,6 @@ components:
         url:
           type: string
           format: uri
-    AuditLog:
-      type: object
-      properties:
-        action:
-          type: string
-          description: Action that was performed.
-        actor:
-          type: string
-          description: Actor who performed the action.
-        params:
-          type: object
-          description: Additional parameters of the action.
-        inserted_at:
-          type: string
-          format: date-time
     Package:
       type: object
       properties:
@@ -234,6 +189,21 @@ components:
               type: integer
             recent:
               type: integer
+    AuditLog:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Action that was performed.
+        actor:
+          type: string
+          description: Actor who performed the action.
+        params:
+          type: object
+          description: Additional parameters of the action.
+        inserted_at:
+          type: string
+          format: date-time
     ReleaseSummary:
       type: object
       properties:
@@ -246,6 +216,36 @@ components:
         inserted_at:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+  parameters:
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
+    page:
+      name: page
+      in: query
+      description: Page number for paginated results. Starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

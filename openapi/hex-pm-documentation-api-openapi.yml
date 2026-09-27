@@ -89,6 +89,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    release_version:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Release version (e.g. 1.0.0).
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
   schemas:
     Error:
       type: object
@@ -104,21 +119,6 @@ components:
       required:
       - status
       - message
-  parameters:
-    package_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Package name.
-    release_version:
-      name: version
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Release version (e.g. 1.0.0).
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

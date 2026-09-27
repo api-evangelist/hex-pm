@@ -273,62 +273,17 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
+    OrganizationMember:
       type: object
       properties:
-        status:
-          type: integer
-        message:
+        username:
           type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
-    AuditLog:
-      type: object
-      properties:
-        action:
+        role:
           type: string
-          description: Action that was performed.
-        actor:
-          type: string
-          description: Actor who performed the action.
-        params:
-          type: object
-          description: Additional parameters of the action.
-        inserted_at:
-          type: string
-          format: date-time
-    ApiKey:
-      type: object
-      properties:
-        name:
-          type: string
-          description: API key name.
-        permissions:
-          type: array
-          items:
-            type: object
-            properties:
-              domain:
-                type: string
-              resource:
-                type: string
-        authing_key:
-          type: boolean
-          description: Whether the current request is authenticated with this key.
-        secret:
-          type: string
-          description: The actual secret key (only returned on creation).
-        inserted_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
+          enum:
+          - admin
+          - write
+          - read
         url:
           type: string
           format: uri
@@ -376,28 +331,73 @@ components:
         url:
           type: string
           format: uri
-    OrganizationMember:
+    AuditLog:
       type: object
       properties:
-        username:
+        action:
           type: string
-        role:
+          description: Action that was performed.
+        actor:
           type: string
-          enum:
-          - admin
-          - write
-          - read
+          description: Actor who performed the action.
+        params:
+          type: object
+          description: Additional parameters of the action.
+        inserted_at:
+          type: string
+          format: date-time
+    ApiKey:
+      type: object
+      properties:
+        name:
+          type: string
+          description: API key name.
+        permissions:
+          type: array
+          items:
+            type: object
+            properties:
+              domain:
+                type: string
+              resource:
+                type: string
+        authing_key:
+          type: boolean
+          description: Whether the current request is authenticated with this key.
+        secret:
+          type: string
+          description: The actual secret key (only returned on creation).
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
         url:
           type: string
           format: uri
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
   parameters:
-    org_name:
-      name: name
+    username:
+      name: username
       in: path
       required: true
       schema:
         type: string
-      description: Organization name.
+      description: Username.
     page:
       name: page
       in: query
@@ -406,13 +406,13 @@ components:
         type: integer
         minimum: 1
         default: 1
-    username:
-      name: username
+    org_name:
+      name: name
       in: path
       required: true
       schema:
         type: string
-      description: Username.
+      description: Organization name.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

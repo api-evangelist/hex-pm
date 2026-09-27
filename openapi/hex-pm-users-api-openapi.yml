@@ -129,20 +129,24 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
+    UserCreate:
       type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
       required:
-      - status
-      - message
+      - username
+      - email
+      - password
+      properties:
+        username:
+          type: string
+          description: Username (3-32 alphanumeric characters).
+        email:
+          type: string
+          format: email
+          description: Email address.
+        password:
+          type: string
+          format: password
+          description: Password.
     User:
       type: object
       properties:
@@ -188,25 +192,28 @@ components:
         inserted_at:
           type: string
           format: date-time
-    UserCreate:
+    Error:
       type: object
-      required:
-      - username
-      - email
-      - password
       properties:
-        username:
+        status:
+          type: integer
+        message:
           type: string
-          description: Username (3-32 alphanumeric characters).
-        email:
-          type: string
-          format: email
-          description: Email address.
-        password:
-          type: string
-          format: password
-          description: Password.
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
   parameters:
+    username_or_email:
+      name: username_or_email
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Username or email address of the user.
     page:
       name: page
       in: query
@@ -215,13 +222,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-    username_or_email:
-      name: username_or_email
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Username or email address of the user.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -219,20 +219,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
     RetireRelease:
       type: object
       required:
@@ -250,14 +236,21 @@ components:
         message:
           type: string
           description: Optional message explaining retirement.
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
   parameters:
-    package_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Package name.
     release_version:
       name: version
       in: path
@@ -265,6 +258,13 @@ components:
       schema:
         type: string
       description: Release version (e.g. 1.0.0).
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

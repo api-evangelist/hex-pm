@@ -5,6 +5,10 @@ description: Package registry for the Erlang and Elixir ecosystems with a REST A
   integration.
 deliveryModel:
   model: unknown
+  license_evidence:
+    repo: hexpm/hexpm
+    spdx: none
+    stars: 1169
   open_source: unknown
   commercial: true
   callable_host: true
@@ -14,7 +18,7 @@ deliveryModel:
   - openapi
   - pricing
   - repository-unlicensed
-  generated: '2026-08-28'
+  generated: '2026-09-25'
   method: derived
 specificationVersion: '0.23'
 accessModel:
@@ -379,7 +383,7 @@ tags:
   - Elixir
   - Gleam
   - BEAM
-  - Open-Source
+  - Open Source
   - Package Manager
 tags_raw:
   - Package Registry
@@ -389,5 +393,6 @@ tags_raw:
   - BEAM
   - Open Source
   - Package Manager
+  - Open-Source
 created: "2026-06-13"
 modified: "2026-06-13"
