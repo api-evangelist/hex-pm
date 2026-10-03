@@ -105,31 +105,37 @@ paths:
                 items:
                   $ref: '#/components/schemas/AuditLog'
 components:
-  headers:
-    X-RateLimit-Reset:
-      description: The time at which the rate limit window resets in UNIX epoch.
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Page number for paginated results. Starts at 1.
       schema:
         type: integer
-    X-RateLimit-Remaining:
-      description: The remaining number of requests allowed until reset.
+        minimum: 1
+        default: 1
+    package_name:
+      name: name
+      in: path
+      required: true
       schema:
-        type: integer
-    X-RateLimit-Limit:
-      description: The maximum number of requests permitted per minute.
-      schema:
-        type: integer
+        type: string
+      description: Package name.
   schemas:
-    Owner:
+    Error:
       type: object
       properties:
-        username:
+        status:
+          type: integer
+        message:
           type: string
-        email:
-          type: string
-          format: email
-        url:
-          type: string
-          format: uri
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
     Package:
       type: object
       properties:
@@ -189,6 +195,29 @@ components:
               type: integer
             recent:
               type: integer
+    Owner:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        url:
+          type: string
+          format: uri
+    ReleaseSummary:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Release version.
+        url:
+          type: string
+          format: uri
+        inserted_at:
+          type: string
+          format: date-time
     AuditLog:
       type: object
       properties:
@@ -204,48 +233,19 @@ components:
         inserted_at:
           type: string
           format: date-time
-    ReleaseSummary:
-      type: object
-      properties:
-        version:
-          type: string
-          description: Release version.
-        url:
-          type: string
-          format: uri
-        inserted_at:
-          type: string
-          format: date-time
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
-  parameters:
-    package_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Package name.
-    page:
-      name: page
-      in: query
-      description: Page number for paginated results. Starts at 1.
+  headers:
+    X-RateLimit-Reset:
+      description: The time at which the rate limit window resets in UNIX epoch.
       schema:
         type: integer
-        minimum: 1
-        default: 1
+    X-RateLimit-Limit:
+      description: The maximum number of requests permitted per minute.
+      schema:
+        type: integer
+    X-RateLimit-Remaining:
+      description: The remaining number of requests allowed until reset.
+      schema:
+        type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

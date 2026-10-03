@@ -273,6 +273,36 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ApiKey:
+      type: object
+      properties:
+        name:
+          type: string
+          description: API key name.
+        permissions:
+          type: array
+          items:
+            type: object
+            properties:
+              domain:
+                type: string
+              resource:
+                type: string
+        authing_key:
+          type: boolean
+          description: Whether the current request is authenticated with this key.
+        secret:
+          type: string
+          description: The actual secret key (only returned on creation).
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
     OrganizationMember:
       type: object
       properties:
@@ -310,6 +340,20 @@ components:
               resource:
                 type: string
                 description: Resource the permission applies to (use * for all).
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
     Organization:
       type: object
       properties:
@@ -346,58 +390,7 @@ components:
         inserted_at:
           type: string
           format: date-time
-    ApiKey:
-      type: object
-      properties:
-        name:
-          type: string
-          description: API key name.
-        permissions:
-          type: array
-          items:
-            type: object
-            properties:
-              domain:
-                type: string
-              resource:
-                type: string
-        authing_key:
-          type: boolean
-          description: Whether the current request is authenticated with this key.
-        secret:
-          type: string
-          description: The actual secret key (only returned on creation).
-        inserted_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        url:
-          type: string
-          format: uri
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
   parameters:
-    username:
-      name: username
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Username.
     page:
       name: page
       in: query
@@ -406,6 +399,13 @@ components:
         type: integer
         minimum: 1
         default: 1
+    username:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Username.
     org_name:
       name: name
       in: path

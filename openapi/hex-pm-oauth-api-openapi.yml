@@ -125,20 +125,6 @@ paths:
           description: Token revoked.
 components:
   schemas:
-    DeviceAuthorizationRequest:
-      type: object
-      required:
-      - client_id
-      properties:
-        client_id:
-          type: string
-        scope:
-          type: string
-        offline_access:
-          type: boolean
-        name:
-          type: string
-          description: Name of the client to display.
     DeviceAuthorizationResponse:
       type: object
       properties:
@@ -156,19 +142,6 @@ components:
           type: integer
         interval:
           type: integer
-    TokenResponse:
-      type: object
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-        expires_in:
-          type: integer
-        refresh_token:
-          type: string
-        scope:
-          type: string
     TokenRequest:
       type: object
       required:
@@ -197,6 +170,33 @@ components:
       required:
       - status
       - message
+    DeviceAuthorizationRequest:
+      type: object
+      required:
+      - client_id
+      properties:
+        client_id:
+          type: string
+        scope:
+          type: string
+        offline_access:
+          type: boolean
+        name:
+          type: string
+          description: Name of the client to display.
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

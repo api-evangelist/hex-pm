@@ -147,6 +147,37 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
+    RetireRelease:
+      type: object
+      required:
+      - reason
+      properties:
+        reason:
+          type: string
+          enum:
+          - other
+          - invalid
+          - security
+          - deprecated
+          - renamed
+          description: Reason for retiring the release.
+        message:
+          type: string
+          description: Optional message explaining retirement.
     Release:
       type: object
       properties:
@@ -219,37 +250,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    RetireRelease:
-      type: object
-      required:
-      - reason
-      properties:
-        reason:
-          type: string
-          enum:
-          - other
-          - invalid
-          - security
-          - deprecated
-          - renamed
-          description: Reason for retiring the release.
-        message:
-          type: string
-          description: Optional message explaining retirement.
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
   parameters:
     release_version:
       name: version

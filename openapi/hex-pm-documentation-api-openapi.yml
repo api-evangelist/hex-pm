@@ -90,13 +90,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    release_version:
-      name: version
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Release version (e.g. 1.0.0).
     package_name:
       name: name
       in: path
@@ -104,6 +97,13 @@ components:
       schema:
         type: string
       description: Package name.
+    release_version:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Release version (e.g. 1.0.0).
   schemas:
     Error:
       type: object

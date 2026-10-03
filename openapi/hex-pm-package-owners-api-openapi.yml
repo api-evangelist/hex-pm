@@ -118,13 +118,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    username:
-      name: username
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Username.
     package_name:
       name: name
       in: path
@@ -132,18 +125,14 @@ components:
       schema:
         type: string
       description: Package name.
+    username:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Username.
   schemas:
-    Owner:
-      type: object
-      properties:
-        username:
-          type: string
-        email:
-          type: string
-          format: email
-        url:
-          type: string
-          format: uri
     Error:
       type: object
       properties:
@@ -158,6 +147,17 @@ components:
       required:
       - status
       - message
+    Owner:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        url:
+          type: string
+          format: uri
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
