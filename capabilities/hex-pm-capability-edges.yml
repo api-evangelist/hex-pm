@@ -1,0 +1,27 @@
+slug: hex-pm
+provider: Hex.pm
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Releases
+  spec_file: hex-pm-releases-api-openapi.yml
+  capability_id: BC-4210.30
+  capability_id_l1: BC-4210
+  capability_name: Release Engineering Management
+  confidence: 0.7
+  evidence: POST /publish publishRelease 'Publish a Release'; POST /packages/{name}/releases/{version}/retire
+    'Mark Release as Retired'; DELETE ... revertRelease
+  reason: Operations publish, revert, retire and un-retire versioned releases of a software package —
+    release engineering discipline (versioning, publication, retirement of releases). Confidence held
+    at 0.7 because this is registry-side release distribution rather than the full internal release cadence/branching
+    practice.

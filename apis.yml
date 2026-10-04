@@ -336,6 +336,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/hex-pm-capability-edges.yml
+    name: Hex.pm Business Capability Map
   - type: Website
     url: https://www.hex.pm/
   - type: IssueTracker
