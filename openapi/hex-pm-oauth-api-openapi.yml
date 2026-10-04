@@ -125,6 +125,33 @@ paths:
           description: Token revoked.
 components:
   schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+    TokenRequest:
+      type: object
+      required:
+      - grant_type
+      - client_id
+      - device_code
+      properties:
+        grant_type:
+          type: string
+          example: urn:ietf:params:oauth:grant-type:device_code
+        client_id:
+          type: string
+        device_code:
+          type: string
     DeviceAuthorizationResponse:
       type: object
       properties:
@@ -142,20 +169,6 @@ components:
           type: integer
         interval:
           type: integer
-    TokenRequest:
-      type: object
-      required:
-      - grant_type
-      - client_id
-      - device_code
-      properties:
-        grant_type:
-          type: string
-          example: urn:ietf:params:oauth:grant-type:device_code
-        client_id:
-          type: string
-        device_code:
-          type: string
     Error:
       type: object
       properties:
@@ -184,19 +197,6 @@ components:
         name:
           type: string
           description: Name of the client to display.
-    TokenResponse:
-      type: object
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-        expires_in:
-          type: integer
-        refresh_token:
-          type: string
-        scope:
-          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

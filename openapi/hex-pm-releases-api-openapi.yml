@@ -146,38 +146,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    package_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Package name.
+    release_version:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Release version (e.g. 1.0.0).
   schemas:
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
-    RetireRelease:
-      type: object
-      required:
-      - reason
-      properties:
-        reason:
-          type: string
-          enum:
-          - other
-          - invalid
-          - security
-          - deprecated
-          - renamed
-          description: Reason for retiring the release.
-        message:
-          type: string
-          description: Optional message explaining retirement.
     Release:
       type: object
       properties:
@@ -250,21 +234,37 @@ components:
         updated_at:
           type: string
           format: date-time
-  parameters:
-    release_version:
-      name: version
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Release version (e.g. 1.0.0).
-    package_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Package name.
+    RetireRelease:
+      type: object
+      required:
+      - reason
+      properties:
+        reason:
+          type: string
+          enum:
+          - other
+          - invalid
+          - security
+          - deprecated
+          - renamed
+          description: Reason for retiring the release.
+        message:
+          type: string
+          description: Optional message explaining retirement.
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

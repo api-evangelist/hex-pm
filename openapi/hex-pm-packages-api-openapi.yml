@@ -122,20 +122,44 @@ components:
         type: string
       description: Package name.
   schemas:
-    Error:
+    ReleaseSummary:
       type: object
       properties:
-        status:
-          type: integer
-        message:
+        version:
           type: string
-        errors:
+          description: Release version.
+        url:
+          type: string
+          format: uri
+        inserted_at:
+          type: string
+          format: date-time
+    Owner:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        url:
+          type: string
+          format: uri
+    AuditLog:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Action that was performed.
+        actor:
+          type: string
+          description: Actor who performed the action.
+        params:
           type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
+          description: Additional parameters of the action.
+        inserted_at:
+          type: string
+          format: date-time
     Package:
       type: object
       properties:
@@ -195,55 +219,31 @@ components:
               type: integer
             recent:
               type: integer
-    Owner:
+    Error:
       type: object
       properties:
-        username:
+        status:
+          type: integer
+        message:
           type: string
-        email:
-          type: string
-          format: email
-        url:
-          type: string
-          format: uri
-    ReleaseSummary:
-      type: object
-      properties:
-        version:
-          type: string
-          description: Release version.
-        url:
-          type: string
-          format: uri
-        inserted_at:
-          type: string
-          format: date-time
-    AuditLog:
-      type: object
-      properties:
-        action:
-          type: string
-          description: Action that was performed.
-        actor:
-          type: string
-          description: Actor who performed the action.
-        params:
+        errors:
           type: object
-          description: Additional parameters of the action.
-        inserted_at:
-          type: string
-          format: date-time
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
   headers:
-    X-RateLimit-Reset:
-      description: The time at which the rate limit window resets in UNIX epoch.
-      schema:
-        type: integer
     X-RateLimit-Limit:
       description: The maximum number of requests permitted per minute.
       schema:
         type: integer
     X-RateLimit-Remaining:
       description: The remaining number of requests allowed until reset.
+      schema:
+        type: integer
+    X-RateLimit-Reset:
+      description: The time at which the rate limit window resets in UNIX epoch.
       schema:
         type: integer
   securitySchemes:

@@ -145,38 +145,6 @@ components:
         type: string
       description: Username or email address of the user.
   schemas:
-    UserCreate:
-      type: object
-      required:
-      - username
-      - email
-      - password
-      properties:
-        username:
-          type: string
-          description: Username (3-32 alphanumeric characters).
-        email:
-          type: string
-          format: email
-          description: Email address.
-        password:
-          type: string
-          format: password
-          description: Password.
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
     User:
       type: object
       properties:
@@ -207,6 +175,24 @@ components:
               type: string
             twitter:
               type: string
+    UserCreate:
+      type: object
+      required:
+      - username
+      - email
+      - password
+      properties:
+        username:
+          type: string
+          description: Username (3-32 alphanumeric characters).
+        email:
+          type: string
+          format: email
+          description: Email address.
+        password:
+          type: string
+          format: password
+          description: Password.
     AuditLog:
       type: object
       properties:
@@ -222,6 +208,20 @@ components:
         inserted_at:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

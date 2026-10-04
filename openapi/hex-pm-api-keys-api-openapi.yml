@@ -162,6 +162,29 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ApiKeyCreate:
+      type: object
+      required:
+      - name
+      - permissions
+      properties:
+        name:
+          type: string
+          description: Unique name for the API key.
+        permissions:
+          type: array
+          description: List of permissions for the key.
+          items:
+            type: object
+            required:
+            - domain
+            properties:
+              domain:
+                type: string
+                description: Permission domain (e.g., api, repositories, docs).
+              resource:
+                type: string
+                description: Resource the permission applies to (use * for all).
     ApiKey:
       type: object
       properties:
@@ -192,29 +215,6 @@ components:
         url:
           type: string
           format: uri
-    ApiKeyCreate:
-      type: object
-      required:
-      - name
-      - permissions
-      properties:
-        name:
-          type: string
-          description: Unique name for the API key.
-        permissions:
-          type: array
-          description: List of permissions for the key.
-          items:
-            type: object
-            required:
-            - domain
-            properties:
-              domain:
-                type: string
-                description: Permission domain (e.g., api, repositories, docs).
-              resource:
-                type: string
-                description: Resource the permission applies to (use * for all).
     Error:
       type: object
       properties:
@@ -230,13 +230,6 @@ components:
       - status
       - message
   parameters:
-    org_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization name.
     key_name:
       name: name
       in: path
@@ -244,6 +237,13 @@ components:
       schema:
         type: string
       description: Name of the API key.
+    org_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization name.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -273,6 +273,29 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ApiKeyCreate:
+      type: object
+      required:
+      - name
+      - permissions
+      properties:
+        name:
+          type: string
+          description: Unique name for the API key.
+        permissions:
+          type: array
+          description: List of permissions for the key.
+          items:
+            type: object
+            required:
+            - domain
+            properties:
+              domain:
+                type: string
+                description: Permission domain (e.g., api, repositories, docs).
+              resource:
+                type: string
+                description: Resource the permission applies to (use * for all).
     ApiKey:
       type: object
       properties:
@@ -317,43 +340,6 @@ components:
         url:
           type: string
           format: uri
-    ApiKeyCreate:
-      type: object
-      required:
-      - name
-      - permissions
-      properties:
-        name:
-          type: string
-          description: Unique name for the API key.
-        permissions:
-          type: array
-          description: List of permissions for the key.
-          items:
-            type: object
-            required:
-            - domain
-            properties:
-              domain:
-                type: string
-                description: Permission domain (e.g., api, repositories, docs).
-              resource:
-                type: string
-                description: Resource the permission applies to (use * for all).
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
     Organization:
       type: object
       properties:
@@ -390,6 +376,20 @@ components:
         inserted_at:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
   parameters:
     page:
       name: page
