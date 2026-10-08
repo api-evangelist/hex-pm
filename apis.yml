@@ -336,6 +336,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/hex-pm/refs/heads/main/finops/finops.yml
 common:
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
   - type: CapabilityMap
     url: capabilities/hex-pm-capability-edges.yml
     name: Hex.pm Business Capability Map
