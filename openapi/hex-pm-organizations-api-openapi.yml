@@ -273,6 +273,27 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Organization:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Organization name.
+        billing_email:
+          type: string
+          format: email
+        seats:
+          type: integer
+          description: Number of seats.
+        inserted_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
     ApiKeyCreate:
       type: object
       required:
@@ -326,6 +347,20 @@ components:
         url:
           type: string
           format: uri
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - status
+      - message
     OrganizationMember:
       type: object
       properties:
@@ -337,27 +372,6 @@ components:
           - admin
           - write
           - read
-        url:
-          type: string
-          format: uri
-    Organization:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Organization name.
-        billing_email:
-          type: string
-          format: email
-        seats:
-          type: integer
-          description: Number of seats.
-        inserted_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
         url:
           type: string
           format: uri
@@ -376,20 +390,6 @@ components:
         inserted_at:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - status
-      - message
   parameters:
     page:
       name: page

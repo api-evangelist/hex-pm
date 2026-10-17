@@ -96,6 +96,13 @@ components:
       - status
       - message
   parameters:
+    org_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization name.
     page:
       name: page
       in: query
@@ -104,13 +111,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-    org_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization name.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

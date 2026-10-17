@@ -161,6 +161,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    key_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Name of the API key.
+    org_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization name.
   schemas:
     ApiKeyCreate:
       type: object
@@ -229,21 +244,6 @@ components:
       required:
       - status
       - message
-  parameters:
-    key_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Name of the API key.
-    org_name:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization name.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
