@@ -64,64 +64,163 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Package registry for the Erlang and Elixir ecosystems with a REST API for searching packages, accessing metadata, managing releases, and user authentication.
+Package registry for the Erlang and Elixir ecosystems with a REST API for searching packages, accessing metadata, managing releases, user authentication, and organization management. Supports public and private packages with HexDocs integration.
 
-## Overview
+**Areas:** Package Registry · Erlang · Elixir · Gleam · BEAM · Open Source · Package Manager
 
-Hex.pm is the central package registry for the BEAM ecosystem, serving Erlang, Elixir, and Gleam developers. It provides a REST API for package discovery, metadata retrieval, release management, authentication, API key management, and organization administration.
+## Hex.pm on APIs.io
 
-**Base URL:** `https://hex.pm/api`  
-**Repository Endpoint:** `https://repo.hex.pm`  
-**Documentation:** https://hex.pm/docs  
-**API Specification:** https://github.com/hexpm/specifications
+Everything profiled for Hex.pm is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hex-pm/](https://apis.io/providers/hex-pm/)** — or go straight to one of the APIs or properties below.
 
-## Key API Capabilities
+### APIs (12)
 
-- Search and retrieve package metadata (25,500+ packages)
-- Publish, retire, and manage package releases
-- Manage API keys and OAuth2 device authorization
-- Administer organizations and package ownership
-- Access private repositories (paid plans)
-- Retrieve package documentation
+- [Hex.pm API Keys API](https://apis.io/apis/hex-pm/hex-pm-api-keys-api/) — API key creation and management.
+- [Hex.pm Authentication API](https://apis.io/apis/hex-pm/hex-pm-authentication-api/) — Authentication verification.
+- [Hex.pm Documentation API](https://apis.io/apis/hex-pm/hex-pm-documentation-api/) — HexDocs package documentation.
+- [Hex.pm Index API](https://apis.io/apis/hex-pm/hex-pm-index-api/) — API index and discovery.
+- [Hex.pm Organizations API](https://apis.io/apis/hex-pm/hex-pm-organizations-api/) — Organization and member management.
+- [Hex.pm Package Owners API](https://apis.io/apis/hex-pm/hex-pm-package-owners-api/) — Package ownership management.
+- [Hex.pm Packages API](https://apis.io/apis/hex-pm/hex-pm-packages-api/) — Package search and metadata.
+- [Hex.pm Releases API](https://apis.io/apis/hex-pm/hex-pm-releases-api/) — Package release publishing and management.
+- [Hex.pm Repositories API](https://apis.io/apis/hex-pm/hex-pm-repositories-api/) — Hex repository management.
+- [Hex.pm Users API](https://apis.io/apis/hex-pm/hex-pm-users-api/) — User account management.
+- [Hex.pm Utilities API](https://apis.io/apis/hex-pm/hex-pm-utilities-api/) — Utility endpoints.
+- [Hex.pm O Auth API](https://apis.io/apis/hex-pm/hex-pm-oauth-api/) — OAuth2 Device Authorization Grant flow.
 
-## Authentication
+### Published properties
 
-| Method | Header | Notes |
-|--------|--------|-------|
-| API Token | `Authorization: {token}` | Created via web UI or `/keys` endpoint |
-| OAuth2 Bearer | `Authorization: Bearer {token}` | Device authorization grant (RFC 8628) |
-| Basic Auth | `-u "username"` | Deprecated; token generation endpoints only |
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Write operations may require 2FA via the `x-hex-otp` header.
+#### Agentic access (1)
 
-## Rate Limits
+Which operations an agent can call, which act, and which need a human in the loop.
 
-| Type | Limit |
-|------|-------|
-| Unauthenticated | 100 requests/minute per IP |
-| Authenticated | 500 requests/minute per token |
+- [Hex Pm Agentic Access](https://apis.io/agentic-access/hex-pm/hex-pm-agentic-access/)
 
-Rate limit headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
+#### JSON Schema (3)
 
-## Pricing
+The data models the API reads and writes.
 
-| Plan | Price | Notes |
-|------|-------|-------|
-| Open Source | Free | Unlimited public packages |
-| Private Packages | $7/month or $70/year | Unlimited private packages, 30-day trial |
-| Enterprise | Custom | Self-hosted, mirroring, whitelisting |
+- [Hex.pm API Key](https://apis.io/schemas/hex-pm/api-key/)
+- [Hex.pm Package](https://apis.io/schemas/hex-pm/package/)
+- [Hex.pm Release](https://apis.io/schemas/hex-pm/release/)
 
-## Resources
+#### Examples (3)
 
-- [API Specification (API Blueprint)](https://github.com/hexpm/specifications/blob/master/apiary.apib)
-- [Protocol Specifications](https://github.com/hexpm/specifications)
-- [Source Code](https://github.com/hexpm/hexpm)
-- [Status Page](https://status.hex.pm)
-- [Security Advisories](https://osv.dev/list?ecosystem=Hex)
+Example requests and responses.
+
+- [Create Api Key](https://apis.io/examples/hex-pm/create-api-key/)
+- [Get Package](https://apis.io/examples/hex-pm/get-package/)
+- [Search Packages](https://apis.io/examples/hex-pm/search-packages/)
+
+#### Collections (12)
+
+Postman and Open Collection request collections.
+
+- [Hex.pm API Keys API](https://apis.io/collections/hex-pm/open-hex-pm-api-keys-api/)
+- [Hex.pm API Keys Authentication API](https://apis.io/collections/hex-pm/open-hex-pm-authentication-api/)
+- [Hex.pm API Keys Documentation API](https://apis.io/collections/hex-pm/open-hex-pm-documentation-api/)
+- [Hex.pm API Keys Index API](https://apis.io/collections/hex-pm/open-hex-pm-index-api/)
+- [Hex.pm API Keys OAuth API](https://apis.io/collections/hex-pm/open-hex-pm-oauth-api/)
+- [Hex.pm API Keys Organizations API](https://apis.io/collections/hex-pm/open-hex-pm-organizations-api/)
+- [Hex.pm API Keys Package Owners API](https://apis.io/collections/hex-pm/open-hex-pm-package-owners-api/)
+- [Hex.pm API Keys Packages API](https://apis.io/collections/hex-pm/open-hex-pm-packages-api/)
+- [Hex.pm API Keys Releases API](https://apis.io/collections/hex-pm/open-hex-pm-releases-api/)
+- [Hex.pm API Keys Repositories API](https://apis.io/collections/hex-pm/open-hex-pm-repositories-api/)
+- [Hex.pm API Keys Users API](https://apis.io/collections/hex-pm/open-hex-pm-users-api/)
+- [Hex.pm API Keys Utilities API](https://apis.io/collections/hex-pm/open-hex-pm-utilities-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Hex.pm — jsonschema rules](https://apis.io/rules/hex-pm/hex-pm-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hex Pm Authentication](https://apis.io/security/hex-pm/hex-pm-authentication/)
+- [Hex Pm Domain Security](https://apis.io/security/hex-pm/hex-pm-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Plans](https://apis.io/plans/hex-pm/plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rate Limits](https://apis.io/rate-limits/hex-pm/rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops](https://apis.io/finops/hex-pm/finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.hex.pm/)
+- [Pricing](https://hex.pm/pricing)
 - [Blog](https://hex.pm/blog)
+- [Terms of service](https://hex.pm/policies/terms)
+- [Privacy policy](https://hex.pm/policies/privacy)
+- [GitHub](https://github.com/hexpm)
 
-## Support
+## API Evangelist rating
 
-- General support: support@hex.pm
-- Security issues: security@hex.pm
-- GitHub issues: https://github.com/hexpm/hexpm/issues
+**Kin Score 31.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.8 |
+| Contract governance | 9.8 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 35.5 |
+
+**Agent readiness 28.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | verified |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hex-pm/](https://apis.io/providers/hex-pm/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hex.pm: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hex-pm/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
